@@ -1,4 +1,4 @@
-const http = require('http')  
+//const http = require('http')  
 const mysql = require("mysql");
 const express = require("express");
 var app = express();
@@ -9,6 +9,7 @@ var mysqlConnection = mysql.createConnection({
     user: "root",
     password:"welcome$1234",
     database:"empoyeedb",
+    multipleStatements:"true",
 });
 mysqlConnection.connect((err) => {
 
@@ -39,6 +40,17 @@ app.delete('/deleteemployee/:id',(req,res) => {
     mysqlConnection.query("DELETE  FROM Employee WHERE EmpID = ?", [req.params.id], (err, rows, fields) =>{
         if(!err){
             res.send("deleted raw successfully");
+           
+        } else console.log(err);
+    })
+})
+app.post("/addemployee",(req,res) => {
+    var sql = "SET @EmpID = ?; SET @Name = ?; SET @EmpCode = ?; SET @Salary = ?;\
+    CALL EmployeeAddOrEdit(@EMpID,@Name,@EmpCode,@Salary);"
+    let emp = req.body;
+    mysqlConnection.query(sql, [emp.EmpID,emp.Name,emp.EmpCode,emp.Salary], (err, rows, fields) =>{
+        if(!err){
+            res.send(rows);
            
         } else console.log(err);
     })
