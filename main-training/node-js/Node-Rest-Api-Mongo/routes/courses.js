@@ -14,12 +14,12 @@ router.get("/allcourses", async(req,res) => {
         res.json(err);
     }
     
-})
+});
 
 //add a course
-router.post("/",async(req,res) =>{
+router.post("/addcourse",async(req,res) =>{
     try{
-        const courses = await Course.create(req.body);
+        const course = await Course.create(req.body);
         res.json(course);
         
     }catch(err){

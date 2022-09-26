@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const  Course = mogoose.Schema({
+const  Course = mongoose.Schema({
     title:{
         type:String,
         require:true
@@ -9,7 +9,7 @@ const  Course = mogoose.Schema({
         require:true
     },
     price:{
-        type:String,
+        type:Number,
         require:true
     },
     active:Boolean
