@@ -43,7 +43,7 @@ module.exports = {
       (error, results) => {
         if (error) {
           console.log(error);
-          return 
+          return callBack(error);
         }
         return callBack(null, results[0]);
       }

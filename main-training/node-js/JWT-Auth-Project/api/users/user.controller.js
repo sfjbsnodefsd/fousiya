@@ -28,7 +28,10 @@ module.exports = {
         getUserById(id, (err, results) => {
             if (err) {
                 console.log(err)
-                return
+                return res.status(500).json({
+                    sucess: 0,
+                    message:`GetByUserId  error ${JSON.stringify(err)}`,
+                });
 
             } if (!results) {
                 return res.json({
@@ -102,6 +105,10 @@ module.exports = {
         getUserByUserEmail(body.email, (err, results) => {
           if (err) {
             console.log(err);
+            return res.json({
+                sucess: 0,
+                message: `Error Found ${err}`,
+              });
           }
           if (!results) {
             return res.json({
