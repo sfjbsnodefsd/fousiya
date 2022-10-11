@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-
+//user register schema
 const UserSchema = new Schema({
     AadharNumber: String,
     email: String,

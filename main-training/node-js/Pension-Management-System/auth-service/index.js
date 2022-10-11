@@ -36,7 +36,7 @@ app.post("/auth/reg", async (req, res) => {
   }
 });
 
-// login
+// login user
 
 app.post("/auth/login", async (req, res) => {
   const { email, password } = req.body;
