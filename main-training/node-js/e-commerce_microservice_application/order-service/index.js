@@ -18,6 +18,7 @@ mongoose.connect(
     // console.log(pro);
   }
 );
+
 async function connect() {
   const amqpServer = "amqp://localhost:5672";
   connection = await amqp.connect(amqpServer);
