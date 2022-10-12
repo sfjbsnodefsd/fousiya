@@ -19,13 +19,14 @@ mongoose.connect(
 
 // register
 app.post("/auth/reg", async (req, res) => {
-  const { email, password, name } = req.body;
+  const { email, password,name } = req.body;
 
   const userExists = await User.findOne({ email });
   if (userExists) {
     return res.json({ sucess: 0, message: "User already exists" });
   } else {
     const newUser = new User({
+
       name,
       email,
       password,
@@ -35,7 +36,7 @@ app.post("/auth/reg", async (req, res) => {
   }
 });
 
-// login
+// login user added
 
 app.post("/auth/login", async (req, res) => {
   const { email, password } = req.body;
