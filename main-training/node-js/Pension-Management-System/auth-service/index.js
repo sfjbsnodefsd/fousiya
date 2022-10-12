@@ -42,7 +42,7 @@ app.post("/auth/login", async (req, res) => {
 
   const user = await User.findOne({ email });
   if (!user) {
-    return res.json({ sucess: 0, message: "User dose not exist" });
+    return res.json({ sucess: 0, message: "User does not exist" });
   } else {
     if (password !== user.password) {
       return res.json({ sucess: 0, message: "Incorrect password" });
