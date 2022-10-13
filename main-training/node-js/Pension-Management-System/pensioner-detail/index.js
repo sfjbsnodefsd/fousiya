@@ -7,9 +7,8 @@ const jwt = require("jsonwebtoken");
 const amqp = require("amqplib");
 const Product = require("./pensioner");
 const isAuthenticated = require("../isAuthenticated");
-const fs = require("fs");
-const { parse } = require("csv-parse");
-var csv = require('csvtojson')
+var csv = require('csvtojson');
+const { json } = require("express");
 
 app.use(express.json());
 var channel, connection;
@@ -22,7 +21,7 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true,
   },
-    () => {
+  () => {
     console.log(`pensioner service DB  Connected`);
     // console.log(pro);
     //add data from csv
@@ -34,8 +33,8 @@ mongoose.connect(
         for (var x = 0; x < response.length; x++) {
 
           //check whether pensioner details already added
-          const pensioner = await PensionerDetail.findOne({AadhaarNumber: response[x].AadhaarNumber});          
-          if(pensioner) //if exists , continue processing next from for loop
+          const pensioner = await PensionerDetail.findOne({ AadhaarNumber: response[x].AadhaarNumber });
+          if (pensioner) //if exists , continue processing next from for loop
             continue;
 
           const pensionerDetail = new PensionerDetail({
@@ -49,14 +48,14 @@ mongoose.connect(
             BankDetails: {
               BankName: response[x].BankName,
               AccountNumber: response[x].AccountNumber,
-              PublicOrPrivateBank: response[x].PublicOrPrivateBank     
+              PublicOrPrivateBank: response[x].PublicOrPrivateBank
             },
           });
 
           pensionerDetail.save();  //save pensioner details using PensionerDetail schema object
 
         }
-      
+
       })
   }
 );
@@ -72,34 +71,44 @@ async function connect() {
   await channel.assertQueue("PENSION_DETAIL");
 }
 
+
+
+
 connect().then(function () {    //queue created
   channel.consume("PENSION_DETAIL", async (data) => {
+
     try {
       console.log("consuming PENSION_DETAIL queue");
       const { aadhaar } = JSON.parse(data.content);
 
       try {
         const pensioner = PensionerDetail.findOne({ aadhaar });
-
+        console.log(pensioner);
         //send data to processPension queue success
-        channel.sendToQueue("");
+        channel.sendToQueue("PROCESS_PENSION",Buffer.from(JSON.stringify({
+          success:true,
+          pensioner
+        })));
       }
       catch (dbCallError) {
         //send data to processPension queue error
-        channel.sendToQueue("", { success: false, data: dbCallError });
+        channel.sendToQueue("PROCESS_PENSION", { success: false, data: dbCallError });
       }
 
       channel.ack(data);
     }
     catch (err) {
       //send data to processPension queue error
-      channel.sendToQueue("");
+      channel.sendToQueue("PROCESS_PENSION",Buffer.from(JSON.stringify({
+        success:false,
+        err
+      })));
     }
   })
 
 });
 
- 
+
 
 //QUEUE PROCESS ENDS
 
@@ -107,7 +116,7 @@ connect().then(function () {    //queue created
 // create a new pensioner
 app.get("/getPensionerDetailByAadhaar/:aadhaar", async (req, res) => {
   try {
-    const pensioner = await PensionerDetail.findOne({AadhaarNumber: req.params.aadhaar});
+    const pensioner = await PensionerDetail.findOne({ AadhaarNumber: req.params.aadhaar });
     console.log(req.params.aadhaar);
     console.log(pensioner)
     return res.status(200).send(pensioner);
