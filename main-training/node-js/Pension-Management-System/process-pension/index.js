@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
-const amqp = require("amqplib");
-let channel, connection;
+require("dotenv").config();
+console.log(process.env.PENSIONER_DETAIL_SERVICE);
+const endpoint = process.env.PENSIONER_DETAIL_SERVICE;
+//const amqp = require("amqplib");
+//let channel, connection;
 const request = require("request");
-
 app.use(express.json());
 
 
@@ -13,7 +15,7 @@ app.post("/ProcessPension", async (req, res) => {
 
 
     //get pension details
-    const url = `http://localhost:5001/getPensionerDetailByAadhaar/${aadhaar}`
+    const url = `${endpoint}/getPensionerDetailByAadhaar/${aadhaar}`
     request.get(url, { json: true }, (err, result, body) => {
         if (err) {
             console.log(err);

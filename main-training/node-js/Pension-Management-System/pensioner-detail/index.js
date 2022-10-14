@@ -1,6 +1,7 @@
 //10/12/2022 8:32
 const express = require("express");
 const app = express();
+require("dotenv").config();
 const PORT = process.env.PORT;
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
@@ -129,6 +130,6 @@ app.get("/getPensionerDetailByAadhaar/:aadhaar", async (req, res) => {
 
 
 
-app.listen(5001, () => {
+app.listen(PORT, () => {
   console.log(`pensioner detail service is working at port 5001`);
 });
