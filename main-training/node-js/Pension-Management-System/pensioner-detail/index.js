@@ -63,50 +63,50 @@ mongoose.connect(
 
 //QUEUE PROCESS STARTS
 
-//create PENSION_DETAIl queue
-async function connect() {
-  const amqpServer = "amqp://localhost:5672";
-  connection = await amqp.connect(amqpServer);
-  channel = await connection.createChannel();
-  await channel.assertQueue("PENSION_DETAIL");
-}
+// //create PENSION_DETAIl queue
+// async function connect() {
+//   const amqpServer = "amqp://localhost:5672";
+//   connection = await amqp.connect(amqpServer);
+//   channel = await connection.createChannel();
+//   await channel.assertQueue("PENSION_DETAIL");
+// }
 
 
 
 
-connect().then(function () {    //queue created
-  channel.consume("PENSION_DETAIL", async (data) => {
+// connect().then(function () {    //queue created
+//   channel.consume("PENSION_DETAIL", async (data) => {
 
-    try {
-      console.log("consuming PENSION_DETAIL queue");
-      const { aadhaar } = JSON.parse(data.content);
+//     try {
+//       console.log("consuming PENSION_DETAIL queue");
+//       const { aadhaar } = JSON.parse(data.content);
 
-      try {
-        const pensioner = PensionerDetail.findOne({ aadhaar });
-        console.log(pensioner);
-        //send data to processPension queue success
-        channel.sendToQueue("PROCESS_PENSION",Buffer.from(JSON.stringify({
-          success:true,
-          pensioner
-        })));
-      }
-      catch (dbCallError) {
-        //send data to processPension queue error
-        channel.sendToQueue("PROCESS_PENSION", { success: false, data: dbCallError });
-      }
+//       try {
+//         const pensioner = PensionerDetail.findOne({ aadhaar });
+//         console.log(pensioner);
+//         //send data to processPension queue success
+//         channel.sendToQueue("PROCESS_PENSION",Buffer.from(JSON.stringify({
+//           success:true,
+//           pensioner
+//         })));
+//       }
+//       catch (dbCallError) {
+//         //send data to processPension queue error
+//         channel.sendToQueue("PROCESS_PENSION", { success: false, data: dbCallError });
+//       }
 
-      channel.ack(data);
-    }
-    catch (err) {
-      //send data to processPension queue error
-      channel.sendToQueue("PROCESS_PENSION",Buffer.from(JSON.stringify({
-        success:false,
-        err
-      })));
-    }
-  })
+//       channel.ack(data);
+//     }
+//     catch (err) {
+//       //send data to processPension queue error
+//       channel.sendToQueue("PROCESS_PENSION",Buffer.from(JSON.stringify({
+//         success:false,
+//         err
+//       })));
+//     }
+//   })
 
-});
+// });
 
 
 
@@ -130,5 +130,5 @@ app.get("/getPensionerDetailByAadhaar/:aadhaar", async (req, res) => {
 
 
 app.listen(5001, () => {
-  console.log(`product service is working at port 5001`);
+  console.log(`pensioner detail service is working at port 5001`);
 });
