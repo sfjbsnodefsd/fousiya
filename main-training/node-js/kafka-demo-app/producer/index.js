@@ -1,4 +1,5 @@
 console.log("producer");
+import e from "express";
 import Kafka from "node-rdkafka";
 
 const stream = Kafka.createWriteStream(
@@ -11,8 +12,12 @@ const stream = Kafka.createWriteStream(
 
 
 function queueMessage() {
-    const result = stream.write(Buffer.from("Hey my name is nishant"))
-    console.log(result);
+    const success = stream.write(Buffer.from("Hey my name is nishant"));
+    if(success){
+      console.log("message published successfully to stream");
+    } else {
+      console.log("something went wrong");
+    }
 }
 setInterval(()=>{
     queueMessage();
