@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "to start the docker image of kafka docker-compose up",
   "main": "index.js",
+  "type":"module",
   "scripts": {
-    "start:producer":"node ./producer/index.js",
-    "start:consumer":"node ./consumer/index.js"
-  
+    "start:producer": "node ./producer/index.js",
+    "start:consumer": "node ./consumer/index.js"
   },
   "author": "fousiya",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "avsc": "^5.7.6",
+    "node-rdkafka": "^2.10.1"
+  }
+
 }
