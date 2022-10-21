@@ -8,23 +8,16 @@ async function connect() {
     connection = await amqp.connect(amqpServer);
     channel = await connection.createChannel();
     await channel.assertQueue("Rabbit");
+    channel.consume("Rabbit", data => {
+        console.log(`recived the data from the producer : ${Buffer.from( data.content)}`);
+        //channel.ack(data)
+    })
   } catch (err) {
     console.log(err);
   }
 }
 connect();
-
-
-app.get("/send",async (req, res) => {
-    const fakedata = {
-        name:"Fousiya",
-        comapany: "TCS"
-    }
-    await channel.sendToQueue("Rabbit",Buffer.from(JSON.stringify(fakedata)));
-    await channel.close();
-    await connection.close();
-    return res.send("done")
-});
-app.listen(5001, () => {
-  console.log("server is running at port 5000");
+app.get("/send", (req, res) => {});
+app.listen(5002, () => {
+  console.log("server is running at port 5002");
 });
