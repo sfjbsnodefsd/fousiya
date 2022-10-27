@@ -10,7 +10,7 @@ title =  "Fill out the form below";
 // to access the data of this variable in out html file use {{variable name}}
 name = "";
 age= 0 ;
-gender = "male"; 
+gender = ""; 
 
 
 save() {

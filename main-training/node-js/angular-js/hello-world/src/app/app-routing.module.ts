@@ -4,7 +4,9 @@ import { HomeComponent } from './Components/home/home.component';
 
 import { UserFormComponent } from './Components/user-form/user-form.component';
 
-const routes: Routes = [{path :"", component:HomeComponent}, {path:"register", component:UserFormComponent}];
+const routes: Routes = [
+  { path: "", component: HomeComponent },
+  { path: "register", component: UserFormComponent }];
 
 
 @NgModule({
