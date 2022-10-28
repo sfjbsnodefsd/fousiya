@@ -2,7 +2,8 @@
   "users":[
       {
           "name":"Fousiya",
-          "age":"Male",
+          "age":29,
+          "gender":"Female",
           "id":1
       }
      
