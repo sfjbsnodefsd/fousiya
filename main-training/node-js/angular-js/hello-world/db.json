@@ -1,11 +1,22 @@
 {
-  "users":[
-      {
-          "name":"Fousiya",
-          "age":29,
-          "gender":"Female",
-          "id":1
-      }
-     
+  "users": [
+    {
+      "name": "Fousiya",
+      "age": 29,
+      "gender": "Female",
+      "id": 1
+    },
+    {
+      "name": "Hana",
+      "age": "25",
+      "gender": "Female",
+      "id": 2
+    },
+    {
+      "name": "Ahan",
+      "age": "20",
+      "gender": "Male",
+      "id": 3
+    }
   ]
 }
