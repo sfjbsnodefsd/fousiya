@@ -9,7 +9,8 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { HomeComponent } from './Components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisteredUsersComponent } from './Components/registered-users/registered-users.component';
-import { PipeDemoComponent } from './Components/pipe-demo/pipe-demo.component'; 
+import { PipeDemoComponent } from './Components/pipe-demo/pipe-demo.component';
+import { EllipsisPipe } from './Pipes/ellipsis.pipe'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,8 @@ import { PipeDemoComponent } from './Components/pipe-demo/pipe-demo.component';
     NavbarComponent,
     HomeComponent,
     RegisteredUsersComponent,
-    PipeDemoComponent
+    PipeDemoComponent,
+    EllipsisPipe
   ],
   imports: [
     BrowserModule,
