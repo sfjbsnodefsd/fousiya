@@ -8,14 +8,16 @@ import { UserFormComponent } from './Components/user-form/user-form.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { HomeComponent } from './Components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { RegisteredUsersComponent } from './Components/registered-users/registered-users.component'; 
+import { RegisteredUsersComponent } from './Components/registered-users/registered-users.component';
+import { PipeDemoComponent } from './Components/pipe-demo/pipe-demo.component'; 
 @NgModule({
   declarations: [
     AppComponent,
     UserFormComponent,
     NavbarComponent,
     HomeComponent,
-    RegisteredUsersComponent
+    RegisteredUsersComponent,
+    PipeDemoComponent
   ],
   imports: [
     BrowserModule,
