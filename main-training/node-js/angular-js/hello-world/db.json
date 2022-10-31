@@ -7,22 +7,28 @@
       "id": 1
     },
     {
-      "name": "Hana",
-      "age": "25",
-      "gender": "Female",
+      "name": "Arun",
+      "age": "21",
+      "gender": "Male",
       "id": 2
     },
     {
-      "name": "Ahan",
-      "age": "20",
+      "name": "Michael",
+      "age": "29",
       "gender": "Male",
       "id": 3
     },
     {
-      "name": "Arman",
-      "age": "35",
+      "name": "Helenqa",
+      "age": "30",
       "gender": "Male",
       "id": 4
+    },
+    {
+      "name": "hewq",
+      "age": "30",
+      "gender": "Female",
+      "id": 6
     }
   ]
 }
