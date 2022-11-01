@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Todo } from 'src/app/Entity/Todo';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-display-todo',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayTodoComponent implements OnInit {
 
-  constructor() { }
+  todos:Todo[];
+  constructor(private store: Store<{todos:Todo[]}>) {
+    store.pipe(select('todos')).subscribe((values) => {
+      this.todos = values;
+      console.log(values);
+      
+    })
+   }
 
   ngOnInit(): void {
   }
