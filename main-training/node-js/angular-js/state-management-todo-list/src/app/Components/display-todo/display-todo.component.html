@@ -1,7 +1,10 @@
-<p>display-todo works!</p>
-<ul class="todos">
-    <li *ngFor="let todo of todos;">
-        {{todo.title}}
-        <span class="cross">X</span>
-    </li>
-</ul>
+
+
+<body>
+    <ul class="todos">
+        <li *ngFor="let todo of todos; let i = index">
+            {{todo.title}}
+            <span (click)="removeTodo(i)" class="cross">X</span>
+        </li>
+    </ul>
+</body>
