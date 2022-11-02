@@ -1,0 +1,21 @@
+.todos{
+    padding: 0%;
+    width: 15cm;
+}
+
+.todos li {
+    background-color: #EE45FC;
+    color:#FFFFFF;
+    padding: 4px;
+    margin:5px 20px;
+    border-radius: 4%;
+}
+
+.cross {
+    float:right;
+    background-color: red;
+    padding: 0px 5px 0px 5px;
+    border-radius: 5%;
+    cursor: pointer;
+    color: wheat;
+}

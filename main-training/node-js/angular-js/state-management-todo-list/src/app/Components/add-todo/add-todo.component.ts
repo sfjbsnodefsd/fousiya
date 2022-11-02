@@ -12,6 +12,7 @@ import { Todo } from 'src/app/Entity/Todo';
 export class AddTodoComponent implements OnInit {
   AddTodo(todo:string){
     const newTodo = new Todo();
+    console.log(todo);
     newTodo.title = todo;
     this.store.dispatch(new TodoAdd(newTodo))
   }
