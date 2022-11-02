@@ -5,6 +5,7 @@ const PORT = 5000;
 const User = require("./User");
 const jwt = require("jsonwebtoken");
 app.use(express.json());
+const isAuthenticated  =require('../isAuthenticated')
 
 mongoose.connect(
   "mongodb://localhost:27017/auth-service",
@@ -18,7 +19,7 @@ mongoose.connect(
 );
 
 // register
-app.post("/auth/reg", async (req, res) => {
+app.post("/auth/reg",isAuthenticated, async (req, res) => {
   const { email, password,name } = req.body;
 
   const userExists = await User.findOne({ email });
