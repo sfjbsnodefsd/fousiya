@@ -10,7 +10,7 @@ module.exports = {
         const salt = genSaltSync(10);
         body.password = hashSync(body.password, salt);
 
-        await create(body, (err, results) => {
+        await create(req,res ,(err, results) => {
             if (err) {
                 console.log(err);
                 return res.status(500).json({
@@ -27,8 +27,9 @@ module.exports = {
 
     login: (req, res) => {
         console.log('login method called');
-       // const body = req.body;
-        getUserByUserEmail(req, (err, results) => {
+        const body = req.body;
+
+        getUserByUserEmail(req, (err, dbUser) => {
           if (err) {
             console.log(err);
             return res.json({
@@ -36,16 +37,19 @@ module.exports = {
                 message: `Error Found ${err}`,
               });
           }
-          if (!results) {
+        
+          if (!dbUser) {
             return res.json({
               sucess: 0,
               message: "Invalid email or password",
             });
           }
-          const result = compareSync(body.password, results.password);
+         
+          const result = compareSync(body.password, dbUser.password);
           if (result) {
-            results.password = undefined;
-            const jsontoken = sign({ result: results }, process.env.KEY, {
+            dbUser.password = undefined;
+            console.log(dbUser.password);
+            const jsontoken = sign({ result: dbUser }, "secret", {
               expiresIn: "1h",
             });
             return res.json({

@@ -33,30 +33,18 @@ module.exports = {
         password,
       });
       newUser.save();
-      return res.json(newUser);
+      return JSON.stringify(newUser);
     }
   }),
-  getUserByUserEmail: ( async (req, res) => {
+  getUserByUserEmail: (async (req, callbackFn) => {
     const { email } = req.body;
   
     const user = await User.findOne({ email });
     if (!user) {
-      return res.json({ sucess: 0, message: "User does not exist" });
-    } else {
-      if (req.password !== user.password) {
-        return res.json({ sucess: 0, message: "Incorrect password" });
-      }
-      const payload = {
-        email,
-        name: user.name,
-      };
-      jwt.sign(payload, "secret", (err, token) => {
-        if (err) console.log(err);
-        else {
-          return res.json({ token: token }); 
-        }
-      });
-    }
+      return callbackFn({ sucess: 0, message: "User does not exist" },{});
+    }  
+
+    return callbackFn(null,user);
   }),
 
  
