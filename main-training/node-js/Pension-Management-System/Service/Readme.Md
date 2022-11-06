@@ -8,8 +8,8 @@ created for layer
 
 auth service created for register user/admin and when user login to the appliocation , user will get the token
 following are the endpoints to use the auth service;
-for user regitration:-  http://localhost:5000/auth/reg
-fou user login :-       http://localhost:5000/auth/login 
+for user regitration:-  http://localhost:5000/api/users/register
+fou user login :-       http://localhost:5000/api/users/login
 
 
 pensioner detail service created for creating pensioner details.This service will import the the CSV file to mongoDB .The user data will be accessed from mongoDb via REST API.To get the pensioner data admin or user have to provide the valid token and adhaar number.

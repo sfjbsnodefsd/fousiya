@@ -12,10 +12,10 @@ module.exports = {
 
     await create(user, (errorMessage, newUser) => {
       if (errorMessage) {
-        fail(res, errorMessage);
+        return fail(res, errorMessage);
       }
       else {
-        success(res, newUser);
+        return success(res, newUser);
       }
     });
   },
@@ -26,7 +26,7 @@ module.exports = {
 
     getUserByUserEmail(user, (err, dbUser) => {
       if (err) {
-        fail(res, err);
+        return fail(res, err);
       }
       else {
         const result = compareSync(user.password, dbUser.password);
@@ -36,9 +36,9 @@ module.exports = {
           const jsontoken = sign({ result: dbUser }, "secret", {
             expiresIn: "30m",
           });
-          success(res, "Login sucessfully ", jsontoken);
+          return success(res, "Login sucessfully ", jsontoken);
         } else {
-          fail(res, "Invalid email or password");
+          return fail(res, "Invalid email or password");
         }
       }
     });

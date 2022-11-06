@@ -11,7 +11,7 @@ const router = require("express").Router();
 const checkToken = require("../../isAuthenticated")
 
 
-router.post("/reg",checkToken,createUser);
+router.post("/register",checkToken,createUser);
 // router.get("/",checkToken, getUsers);
 // router.get("/:id",checkToken, getUserById);
 // router.patch("/",checkToken, updateUser);
