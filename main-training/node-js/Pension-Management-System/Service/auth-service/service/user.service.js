@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const User = require("./User");
+const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 app.use(express.json());
 
@@ -27,7 +27,7 @@ module.exports = {
     try {
       existingUser = await User.findOne({ email });
     } catch (err) {
-      return callbackFn("User already exists");
+      return callbackFn("Error While Connecting With Database");
     }
 
     if (existingUser) {

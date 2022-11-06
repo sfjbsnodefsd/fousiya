@@ -4,11 +4,11 @@ const { createUser,
     //  getUsers, 
     //  updateUser,
      login 
-   } = require("./user.controller");
+   } = require("../controller/user.controller");
 
    
 const router = require("express").Router();
-const checkToken = require("../isAuthenticated")
+const checkToken = require("../../isAuthenticated")
 
 
 router.post("/reg",checkToken,createUser);

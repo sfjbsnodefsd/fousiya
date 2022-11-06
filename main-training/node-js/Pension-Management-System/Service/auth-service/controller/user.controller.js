@@ -1,8 +1,8 @@
 const { hashSync } = require("bcrypt");
-const { create, getUserByUserEmail } = require("./user.service");
+const { create, getUserByUserEmail } = require("../service/user.service");
 const { genSaltSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken")
-const { success, fail } = require('../auth-service/http.response')
+const { success, fail } = require('../utility/http.response')
 
 module.exports = {
   createUser: async (req, res) => {
@@ -11,10 +11,12 @@ module.exports = {
     user.password = hashSync(user.password, salt);
 
     await create(user, (errorMessage, newUser) => {
-      if (errorMessage) {       
+      if (errorMessage) {
         fail(res, errorMessage);
       }
-      success(res, newUser);
+      else {
+        success(res, newUser);
+      }
     });
   },
 
@@ -23,10 +25,10 @@ module.exports = {
     const user = req.body;
 
     getUserByUserEmail(user, (err, dbUser) => {
-      if (err) {       
+      if (err) {
         fail(res, err);
       }
-      else { 
+      else {
         const result = compareSync(user.password, dbUser.password);
         if (result) {
           dbUser.password = undefined;
@@ -34,9 +36,9 @@ module.exports = {
           const jsontoken = sign({ result: dbUser }, "secret", {
             expiresIn: "30m",
           });
-          success(res,"Login sucessfully ",jsontoken);          
+          success(res, "Login sucessfully ", jsontoken);
         } else {
-          fail(res,"Invalid email or password");
+          fail(res, "Invalid email or password");
         }
       }
     });
