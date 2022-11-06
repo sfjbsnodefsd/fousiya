@@ -2,7 +2,7 @@ const { hashSync } = require("bcrypt");
 const { create, getUserByUserEmail } = require("../service/user.service");
 const { genSaltSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken")
-const { success, fail } = require('../utility/http.response')
+const { success, fail } = require('../../http.response')
 
 module.exports = {
   createUser: async (req, res) => {

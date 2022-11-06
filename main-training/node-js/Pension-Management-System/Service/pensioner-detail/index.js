@@ -1,20 +1,13 @@
-//10/12/2022 8:32
 const express = require("express");
 const app = express();
 require("dotenv").config();
-const PORT = process.env.PORT;
 const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
-const amqp = require("amqplib");
-const Product = require("./pensioner");
+const PensionerDetail = require("./pensioner");
 const checktoken = require("../isAuthenticated");
 var csv = require('csvtojson');
-const { json } = require("express");
-const {success,fail} = require('./utility/http.response')
+const {success,fail} = require('../http.response')
 
 app.use(express.json());
-var channel, connection;
-
 
 
 mongoose.connect(
@@ -63,61 +56,11 @@ mongoose.connect(
 );
 
 
-//QUEUE PROCESS STARTS
-
-// //create PENSION_DETAIl queue
-// async function connect() {
-//   const amqpServer = "amqp://localhost:5672";
-//   connection = await amqp.connect(amqpServer);
-//   channel = await connection.createChannel();
-//   await channel.assertQueue("PENSION_DETAIL");
-// }
-
-
-
-
-// connect().then(function () {    //queue created
-//   channel.consume("PENSION_DETAIL", async (data) => {
-
-//     try {
-//       console.log("consuming PENSION_DETAIL queue");
-//       const { aadhaar } = JSON.parse(data.content);
-
-//       try {
-//         const pensioner = PensionerDetail.findOne({ aadhaar });
-//         console.log(pensioner);
-//         //send data to processPension queue success
-//         channel.sendToQueue("PROCESS_PENSION",Buffer.from(JSON.stringify({
-//           success:true,
-//           pensioner
-//         })));
-//       }
-//       catch (dbCallError) {
-//         //send data to processPension queue error
-//         channel.sendToQueue("PROCESS_PENSION", { success: false, data: dbCallError });
-//       }
-
-//       channel.ack(data);
-//     }
-//     catch (err) {
-//       //send data to processPension queue error
-//       channel.sendToQueue("PROCESS_PENSION",Buffer.from(JSON.stringify({
-//         success:false,
-//         err
-//       })));
-//     }
-//   })
-
-// });
-
-
-
-//QUEUE PROCESS ENDS
-
 
 // create a new pensioner
 app.get("/getPensionerDetailByAadhaar/:aadhaar",checktoken, async (req, res) => {
   try {
+    console.log(req);
     const pensioner = await PensionerDetail.findOne({ AadhaarNumber: req.params.aadhaar });
     if(pensioner){
       return success(res,pensioner);
@@ -132,6 +75,6 @@ app.get("/getPensionerDetailByAadhaar/:aadhaar",checktoken, async (req, res) => 
 });
 
 
-app.listen(PORT, () => {
-  console.log(`pensioner detail service is working at port 5001`);
+app.listen(process.env.PORT, () => {
+  console.log(`pensioner detail service is working at port ${process.env.PORT}`);
 });
