@@ -1,12 +1,12 @@
 
 module.exports = {
-    success: (res, result) => {
+    success: (res, result) => {        
         return res.status(200).json({
             success: 1,
             data: result,
         });
     },
-    success:(res,result,jsonToken)=>{
+    success:(res,result,jsonToken)=>{        
         return res.status(200).json({
             success: 1,
             message: result,
@@ -14,7 +14,7 @@ module.exports = {
           });
     },
     fail: (res, message) => {
-        console.log(message);
+        console.log(message);        
         return res.status(500).json({
             success: 0,
             message: message,

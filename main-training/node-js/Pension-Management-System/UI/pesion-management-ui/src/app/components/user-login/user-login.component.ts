@@ -14,25 +14,20 @@ export class UserLoginComponent implements OnInit {
   title = "Login";
   
   login(){
+     
+      //validation
+
       var loginResultObservable = this.loginService.login(this.user);
       loginResultObservable.subscribe(
         (response: any) => {
-          console.log(response);
-          if(response){
-              if(response.success == 0){  //invalid username or password
-                console.log( `ERROR LOGIN ${response}`);
-              }
-              else{
-                console.log( `LOGIN SUCCESS${response}`);
-              }
-          }
-          else{   //SERVICE EXCEPTION
-            console.log("ERROR LOGIN")
-          }
+          //set cookie          
+           alert('valid user');
         },
-        function () {
-          //console.log(error);
+        (httpErrorResponse:any)=>{
+          console.log("ERROR LOGIN")
+          console.log(httpErrorResponse.error);
         }
+        
       );
 
       

@@ -9,7 +9,7 @@ const BASE_URL = 'http://localhost:5000/api/users';
 export class LoginService {
    
   login(user: User) : any{
-    return this.http.post(`${BASE_URL}+'/login'`, user);
+    return this.http.post(`${BASE_URL}/login`, user);
   }
 
   constructor(private http: HttpClient) {}
