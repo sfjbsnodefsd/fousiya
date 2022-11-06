@@ -7,9 +7,10 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const amqp = require("amqplib");
 const Product = require("./pensioner");
-const isAuthenticated = require("../isAuthenticated");
+const checktoken = require("../isAuthenticated");
 var csv = require('csvtojson');
 const { json } = require("express");
+const {success,fail} = require('./utility/http.response')
 
 app.use(express.json());
 var channel, connection;
@@ -115,19 +116,20 @@ mongoose.connect(
 
 
 // create a new pensioner
-app.get("/getPensionerDetailByAadhaar/:aadhaar", async (req, res) => {
+app.get("/getPensionerDetailByAadhaar/:aadhaar",checktoken, async (req, res) => {
   try {
     const pensioner = await PensionerDetail.findOne({ AadhaarNumber: req.params.aadhaar });
-    console.log(req.params.aadhaar);
-    console.log(pensioner)
-    return res.status(200).send(pensioner);
-
+    if(pensioner){
+      return success(res,pensioner);
+    }
+    else{
+       return fail(res,`The Aadhaar ${req.params.aadhaar} Details Not Found`); 
+    }
   }
   catch (dbCallError) {
     return res.status(400).send(dbCallError);
   }
 });
-
 
 
 app.listen(PORT, () => {
