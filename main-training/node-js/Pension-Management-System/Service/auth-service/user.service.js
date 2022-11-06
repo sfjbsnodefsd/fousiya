@@ -19,37 +19,43 @@ mongoose.connect(
 
 // register
 module.exports = {
-  create: ( async (req, res) => {
-    const { email, password,name } = req.body;
-  
-    const userExists = await User.findOne({ email });
-    if (userExists) {
-      return res.json({ sucess: 0, message: "User already exists" });
+  create: (async (user, callbackFn) => {
+    const { email, password, name } = user;
+
+    let existingUser;
+
+    try {
+      existingUser = await User.findOne({ email });
+    } catch (err) {
+      return callbackFn("User already exists");
+    }
+
+    if (existingUser) {
+      return callbackFn("User already exists");
     } else {
       const newUser = new User({
-  
         name,
         email,
         password,
       });
       newUser.save();
-      return JSON.stringify(newUser);
+      return callbackFn(null, newUser);
     }
   }),
-  getUserByUserEmail: (async (req, callbackFn) => {
-    const { email } = req.body;
-  
-    const user = await User.findOne({ email });
-    if (!user) {
-      return callbackFn({ sucess: 0, message: "User does not exist" },{});
-    }  
+  getUserByUserEmail: (async (user, callbackFn) => {
+    const { email } = user;
 
-    return callbackFn(null,user);
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
+      return callbackFn("User Does Not Exists");
+    }
+
+    return callbackFn(null, existingUser);
   }),
 
- 
+
 };
- 
+
 
 // login user added
 
