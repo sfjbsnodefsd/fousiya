@@ -1,1 +1,13 @@
-<p>pensioner-detail works!</p>
+<div class="form-outline mb-4">
+    <label class="form-label" for="form3Example3">Enter your aadhaar number</label>
+    <input name="aadhaarNumber" type="aadhaarNumber" [(ngModel)]="user.aadhaar" id="form3Example3" class="form-control form-control-lg"
+      placeholder="Enter your aadhaar number" />
+     
+  </div>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form3Example3">Enter your token</label>
+    <input name="usertoken" type="usertoken" [(ngModel)]="user.token" id="form3Example3" class="form-control form-control-lg"
+      placeholder="Enter your token " />
+     
+  </div>
+<button style="margin: left 100px ;" (click)="pensioner()">ok</button>

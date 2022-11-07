@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  showLoginLink:boolean = true;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    const token = localStorage.getItem('userToken');
+    this.showLoginLink = token == undefined || token == null;
+    
+    if(!token){
+      this.router.navigate(['/login']);
+   }
   }
 
 }

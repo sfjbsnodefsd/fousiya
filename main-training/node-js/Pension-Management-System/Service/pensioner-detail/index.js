@@ -58,7 +58,7 @@ mongoose.connect(
 
 
 // create a new pensioner
-app.get("/getPensionerDetailByAadhaar/:aadhaar",checktoken, async (req, res) => {
+app.get("/getPensionerDetailByAadhaar/:aadhaar", async (req, res) => {
   try {
     console.log(req);
     const pensioner = await PensionerDetail.findOne({ AadhaarNumber: req.params.aadhaar });
