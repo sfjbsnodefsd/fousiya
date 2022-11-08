@@ -6,6 +6,7 @@ const PensionerDetail = require("./pensioner");
 const checktoken = require("../isAuthenticated");
 var csv = require('csvtojson');
 const {success,fail} = require('../http.response')
+const cors= require('cors');
 
 app.use(express.json());
 
@@ -58,7 +59,7 @@ mongoose.connect(
 
 
 // create a new pensioner
-app.get("/getPensionerDetailByAadhaar/:aadhaar", async (req, res) => {
+app.get("/getPensionerDetailByAadhaar/:aadhaar",cors(), async (req, res) => {
   try {
     console.log(req);
     const pensioner = await PensionerDetail.findOne({ AadhaarNumber: req.params.aadhaar });

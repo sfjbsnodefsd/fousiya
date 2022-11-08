@@ -1,13 +1,37 @@
 <div class="form-outline mb-4">
-    <label class="form-label" for="form3Example3">Enter your aadhaar number</label>
-    <input name="aadhaarNumber" type="aadhaarNumber" [(ngModel)]="user.aadhaar" id="form3Example3" class="form-control form-control-lg"
+    <!-- <label class="form-label" for="form3Example3">Enter your aadhaar number</label> -->
+    <input name="aadhaarNumber" type="aadhaarNumber" [(ngModel)]="this.pensioner.AadhaarNumber" id="form3Example3" class="form-control form-control-lg"
       placeholder="Enter your aadhaar number" />
      
-  </div>
-  <div class="form-outline mb-4">
-    <label class="form-label" for="form3Example3">Enter your token</label>
-    <input name="usertoken" type="usertoken" [(ngModel)]="user.token" id="form3Example3" class="form-control form-control-lg"
-      placeholder="Enter your token " />
-     
-  </div>
-<button style="margin: left 100px ;" (click)="pensioner()">ok</button>
+<!-- <div >
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Name</td>
+        <td>`${this.pensioner.Name}`</td>
+      </tr>
+      <tr>
+        <td>February</td>
+        <td>$80</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Sum</td>
+        <td>$180</td>
+      </tr>
+    </tfoot>
+  </table>
+
+</div>
+
+  </div> -->
+
+
+<button style="margin: left 100px ;" (click)="getDetail()">GetDetails</button>
