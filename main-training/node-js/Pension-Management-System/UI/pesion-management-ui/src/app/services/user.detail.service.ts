@@ -1,18 +1,19 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import User from '../Entity/user';
-const endpoint='http://localhost:6000/getPensionerDetailByAadhaar'
+import { Pensioner } from '../Entity/pensioner';
+const endpoint = 'http://localhost:6000/getPensionerDetailByAadhaar'
 @Injectable({
-    providedIn: 'root',
-  })
+  providedIn: 'root',
+})
 
 
 
-  export class PensionerDetail {
-   
-    pensioner(user: User) : any{
-      return this.http.get(`${endpoint}/${user.aadhaar}`);
-    }
-  
-    constructor(private http: HttpClient) {}
+export class PensionerDetail {
+
+  getPensionerDetails(pensioner: Pensioner, auth: string): any {
+    const url = `${endpoint}/${pensioner.AadhaarNumber}`;
+        return this.http.get(url, { headers: { "Autherization": auth } });
   }
+
+  constructor(private http: HttpClient) { }
+}
