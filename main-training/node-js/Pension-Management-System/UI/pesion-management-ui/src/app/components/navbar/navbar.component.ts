@@ -9,6 +9,12 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   showLoginLink:boolean = true;
+  logout(){
+    localStorage.setItem('userToken','');
+    this.router.navigate(['/login']);
+    
+ 
+  }
 
   constructor(private router: Router) { }
 
@@ -16,7 +22,7 @@ export class NavbarComponent implements OnInit {
     const token = localStorage.getItem('userToken');
     this.showLoginLink = token == undefined || token == null;
     
-    if(!token){
+    if(!token || token.trim() ==''){
       this.router.navigate(['/login']);
    }
   }

@@ -18,10 +18,9 @@
                         <a class="nav-link" routerLink="/pension" href="#">Processed Pension Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/logout" href="#">  <li class="nav-item">
-                        <a class="nav-link" routerLink="/pension" href="#"></a>
-                    </li></a>
+                        <a class="nav-link" (click)="logout()" routerLink="/logout" href="#">Logout</a>
                     </li>
+                  
                 </ng-container>
 
                 <li class="nav-item" *ngIf="showLoginLink">
