@@ -3,9 +3,9 @@ const app = express();
 require("dotenv").config();
 const mongoose = require("mongoose");
 const PensionerDetail = require("./pensioner");
-const checktoken = require("../isAuthenticated");
+const checktoken = require("./isAuthenticated");
 var csv = require('csvtojson');
-const {success,fail} = require('../http.response')
+const {success,fail} = require('./http.response')
 const cors= require('cors');
 
 app.use(express.json());
@@ -76,6 +76,6 @@ app.get("/getPensionerDetailByAadhaar/:aadhaar",cors(), async (req, res) => {
 });
 
 
-app.listen(process.env.PORT, () => {
-  console.log(`pensioner detail service is working at port ${process.env.PORT}`);
+app.listen(5001, () => {
+  console.log(`pensioner detail service is working at port 5001 ${process.env.PORT}`);
 });

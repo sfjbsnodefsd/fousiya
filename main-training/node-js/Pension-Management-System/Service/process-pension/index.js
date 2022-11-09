@@ -3,8 +3,8 @@ const app = express();
 require("dotenv").config();
 const request = require("request");
 app.use(express.json());
-const checktoken = require('../isAuthenticated');
-const {success,fail} = require('../http.response')
+const checktoken = require('./isAuthenticated');
+const {success,fail} = require('./http.response')
 
 app.post("/ProcessPension",checktoken, async (req, res) => {
     const { aadhaar } = req.body;
@@ -26,7 +26,7 @@ app.post("/ProcessPension",checktoken, async (req, res) => {
         const _pensionAmount = (percentage * SalaryEarned) + Allowances;
         const _serviceCharge = getServiceCharge(BankDetails);
         //return result
-        res.status(200).json({
+        return success(res,{
             pensionAmount: _pensionAmount,
             bankServiceCharge: _serviceCharge
         });
@@ -38,14 +38,14 @@ app.post("/ProcessPension",checktoken, async (req, res) => {
     }
 
 });
-
-
+//process.env.PENSIONER_DETAIL_SERVICE
+const PENSIONER_DETAIL_SERVICE=  'http://localhost:5001';
 
 const getPensionDetails = (aadhaar,auth) => {
 
     return new Promise((resolve, reject) => {
         try {
-            const url = `${process.env.PENSIONER_DETAIL_SERVICE}/getPensionerDetailByAadhaar/${aadhaar}`            
+            const url = `${PENSIONER_DETAIL_SERVICE}/getPensionerDetailByAadhaar/${aadhaar}`            
             request.get(url, { json: true , headers : {
                 "Authorization" : auth
             } }, (err, result, body) => {
@@ -99,6 +99,6 @@ const getServiceCharge = (BankDetails) => {
 
 
 
-app.listen(7000, () => {
-    console.log(`process-pension service is working at port ${process.env.PORT}`);
+app.listen(5002, () => {
+    console.log(`process-pension service is working at port 5002 ${process.env.PORT}`);
 });

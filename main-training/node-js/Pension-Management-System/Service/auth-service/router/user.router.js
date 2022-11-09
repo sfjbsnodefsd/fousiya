@@ -8,7 +8,7 @@ const { createUser,
 
    
 const router = require("express").Router();
-const checkToken = require("../../isAuthenticated")
+const checkToken = require("../isAuthenticated");
 
 
 router.post("/register",checkToken,createUser);
