@@ -7,7 +7,7 @@ const checktoken = require("./isAuthenticated");
 var csv = require('csvtojson');
 const {success,fail} = require('./http.response')
 const cors= require('cors');
-
+app.use(cors());
 app.use(express.json());
 
 

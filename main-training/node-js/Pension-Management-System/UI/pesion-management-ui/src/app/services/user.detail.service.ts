@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Pensioner } from '../Entity/pensioner';
-const endpoint = 'http://localhost:6000/getPensionerDetailByAadhaar'
+const endpoint = 'http://localhost:5001/getPensionerDetailByAadhaar'
 @Injectable({
   providedIn: 'root',
 })

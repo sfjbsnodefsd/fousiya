@@ -1,37 +1,58 @@
 <div class="form-outline mb-4">
-    <!-- <label class="form-label" for="form3Example3">Enter your aadhaar number</label> -->
-    <input name="aadhaarNumber" type="aadhaarNumber" [(ngModel)]="this.pensioner.AadhaarNumber" id="form3Example3" class="form-control form-control-lg"
-      placeholder="Enter your aadhaar number" />
-     
-<!-- <div >
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Name</td>
-        <td>`${this.pensioner.Name}`</td>
-      </tr>
-      <tr>
-        <td>February</td>
-        <td>$80</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td>Sum</td>
-        <td>$180</td>
-      </tr>
-    </tfoot>
-  </table>
+  <!-- <label class="form-label" for="form3Example3">Enter your aadhaar number</label> -->
+  <input name="aadhaarNumber" type="aadhaarNumber" [(ngModel)]="this.pensioner.AadhaarNumber" id="form3Example3"
+    class="form-control form-control-lg" placeholder="Enter your aadhaar number" />
+
+<button style="margin: left 100px ;" (click)="getDetail()">GetDetails</button>
+    
 
 </div>
 
-  </div> -->
+ <!-- Form Group (Name)-->
+ <div class="mb-3">
+  <label class="small mb-1" for="inputUsername">Name</label>
+  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.Name" >
+</div>
+<!-- Form Row (DOB)-->
+<div class="mb-3">
+  <label class="small mb-1" for="inputUsername">DOB</label>
+  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.DateOfBirth" >
+</div>
+<!-- Form Row (AadhaarNumber)-->
+<div class="mb-3">
+  <label class="small mb-1" for="inputUsername">AadhaarNumber</label>
+  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.AadhaarNumber" >
+</div>
+<!-- Form Row (PAN)-->
+<div class="mb-3">
+  <label class="small mb-1" for="inputUsername">PAN</label>
+  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.PAN" >
+</div>
+<!-- Form Row (SalaryEarned)-->
+<div class="mb-3">
+  <label class="small mb-1" for="inputUsername">SalaryEarned</label>
+  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.SalaryEarned" >
+</div>
+<!-- Form Row (Allowances)-->
+<div class="mb-3">
+  <label class="small mb-1" for="inputUsername">Allowances</label>
+  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.Allowances" >
+</div>
+
+<!-- Form Row (BankName)-->
+<div class="mb-3">
+  <label class="small mb-1" for="inputUsername">BankName</label>
+  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.BankDetails.BankName" >
+</div>
+<!-- Form Row (AccountNumber)-->
+<div class="mb-3">
+  <label class="small mb-1" for="inputUsername">AccountNumber</label>
+  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.BankDetails.AccountNumber" >
+</div>
+<!-- Form Row (PublicOrPrivateBank)-->
+<div class="mb-3">
+  <label class="small mb-1" for="inputUsername">PublicOrPrivateBank</label>
+  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.BankDetails.PublicOrPrivateBank" >
+</div>
 
 
-<button style="margin: left 100px ;" (click)="getDetail()">GetDetails</button>
