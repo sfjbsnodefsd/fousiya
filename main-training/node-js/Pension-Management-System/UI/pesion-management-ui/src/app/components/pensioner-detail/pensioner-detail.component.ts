@@ -9,6 +9,7 @@ import { PensionerDetail } from 'src/app/services/user.detail.service';
 })
 export class PensionerDetailComponent implements OnInit {
   pensioner: Pensioner = new Pensioner();
+  aadhaarNumber:number=0;
  
   getDetail() {
     const auth = localStorage.getItem('userToken');
@@ -19,7 +20,7 @@ export class PensionerDetailComponent implements OnInit {
       alert("unautherized user trying to access details");
     }
     else{
-      const pensionerDetails = this.pensionerDetail.getPensionerDetails(this.pensioner,auth);
+      const pensionerDetails = this.pensionerDetail.getPensionerDetails(this.aadhaarNumber,auth);
 
     pensionerDetails.subscribe(
         (response: any) => {

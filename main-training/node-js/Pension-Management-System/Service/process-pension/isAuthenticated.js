@@ -6,8 +6,8 @@ module.exports = async function isAuthenticated(req, res, next) {
   console.log(token);
     jwt.verify(token, "secret", (err, user) => {
     if (err) {
-      return res.json({
-        sucess: 0,
+      return res.status(500).json({
+        success: 0,
         message: "Unauthoroized",
       });
     } else {

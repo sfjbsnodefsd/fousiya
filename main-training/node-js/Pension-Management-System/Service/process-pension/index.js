@@ -5,8 +5,9 @@ const request = require("request");
 app.use(express.json());
 const checktoken = require('./isAuthenticated');
 const {success,fail} = require('./http.response')
-
-app.post("/ProcessPension",checktoken, async (req, res) => {
+const cors = require('cors');
+app.use(cors());
+app.post("/ProcessPension",checktoken,cors(), async (req, res) => {
     const { aadhaar } = req.body;
     console.log(`aadhaar number ${aadhaar}`)
     const auth = req.header('authorization');

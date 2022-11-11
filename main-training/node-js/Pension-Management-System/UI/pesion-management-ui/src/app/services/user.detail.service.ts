@@ -10,9 +10,9 @@ const endpoint = 'http://localhost:5001/getPensionerDetailByAadhaar'
 
 export class PensionerDetail {
 
-  getPensionerDetails(pensioner: Pensioner, auth: string): any {
-    const url = `${endpoint}/${pensioner.AadhaarNumber}`;
-        return this.http.get(url, { headers: { "Autherization": auth } });
+  getPensionerDetails(aadhaarNUmber:number, auth: string): any {
+    const url = `${endpoint}/${aadhaarNUmber}`;
+        return this.http.get(url, { headers: { "Autherization": `Bearer ${auth}` } });
   }
 
   constructor(private http: HttpClient) { }

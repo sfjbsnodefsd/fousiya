@@ -1,1 +1,50 @@
-<p>process-pension works!</p>
+<div class="form-outline mb-4">
+    <!-- <label class="form-label" for="form3Example3">Enter your aadhaar number</label> -->
+  <div class="col-md-6 col-lg-4 mt-20">
+   
+    <input name="aadhaarNumber" type="aadhaarNumber" [(ngModel)]="aadhaarNumber" id="form3Example3"
+      class="form-control form-control-lg" placeholder="Enter your aadhaar number" />
+  
+    <button style="margin: left 100px ;" (click)="processPensionerPension()">ShowPension</button>
+  
+  </div>
+
+
+
+
+<section class="h-100 h-custom" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-8 col-xl-6">
+          <div class="card border-top border-bottom border-3" style="border-color: #f37a27 !important;">
+            <div class="card-body p-5">
+  
+              <p class="lead fw-bold mb-5" style="color: #f37a27;">Pension Details</p>
+  
+              
+  
+              <div class="mx-n5 px-5 py-4" style="background-color: #f2f2f2;">
+                <div class="row">
+                  <div class="col-md-8 col-lg-9">
+                    <p>Pension Amount</p>
+                  </div>
+                  <div class="col-md-4 col-lg-3">
+                    <label name="Pension Amount" [innerHTML]="pensionAmount" id="form3Example3"></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8 col-lg-9">
+                    <p class="mb-0">Bank Service Charge</p>                    
+                  </div>
+                  <div class="col-md-4 col-lg-3">
+                    <label name="BankServiceCharge" [innerHTML]="bankServiceCharge" id="lblbankServiceCharge"></label>
+                  </div>                 
+                </div>
+              </div>
+   
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
