@@ -1,58 +1,124 @@
 <div class="form-outline mb-4">
   <!-- <label class="form-label" for="form3Example3">Enter your aadhaar number</label> -->
-  <input name="aadhaarNumber" type="aadhaarNumber" [(ngModel)]="aadhaarNumber" id="form3Example3"
-    class="form-control form-control-lg" placeholder="Enter your aadhaar number" />
+  <div class="col-md-6 col-lg-4 mt-20">
 
-<button style="margin: left 100px ;" (click)="getDetail()">GetDetails</button>
-    
+    <input name="aadhaarNumber" type="aadhaarNumber" [(ngModel)]="aadhaarNumber" id="form3Example3"
+      class="form-control form-control-lg" placeholder="Enter your aadhaar number" />
 
-</div>
+    <button style="margin: left 100px ;" (click)="getDetail()">Pensioner Detail</button>
 
- <!-- Form Group (Name)-->
- <div class="mb-3">
-  <label class="small mb-1" for="inputUsername">Name</label>
-  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.Name" >
-</div>
-<!-- Form Row (DOB)-->
-<div class="mb-3">
-  <label class="small mb-1" for="inputUsername">DOB</label>
-  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.DateOfBirth" >
-</div>
-<!-- Form Row (AadhaarNumber)-->
-<div class="mb-3">
-  <label class="small mb-1" for="inputUsername">AadhaarNumber</label>
-  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.AadhaarNumber" >
-</div>
-<!-- Form Row (PAN)-->
-<div class="mb-3">
-  <label class="small mb-1" for="inputUsername">PAN</label>
-  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.PAN" >
-</div>
-<!-- Form Row (SalaryEarned)-->
-<div class="mb-3">
-  <label class="small mb-1" for="inputUsername">SalaryEarned</label>
-  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.SalaryEarned" >
-</div>
-<!-- Form Row (Allowances)-->
-<div class="mb-3">
-  <label class="small mb-1" for="inputUsername">Allowances</label>
-  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.Allowances" >
-</div>
-
-<!-- Form Row (BankName)-->
-<div class="mb-3">
-  <label class="small mb-1" for="inputUsername">BankName</label>
-  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.BankDetails.BankName" >
-</div>
-<!-- Form Row (AccountNumber)-->
-<div class="mb-3">
-  <label class="small mb-1" for="inputUsername">AccountNumber</label>
-  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.BankDetails.AccountNumber" >
-</div>
-<!-- Form Row (PublicOrPrivateBank)-->
-<div class="mb-3">
-  <label class="small mb-1" for="inputUsername">PublicOrPrivateBank</label>
-  <input class="form-control" id="inputUsername" type="text" [(ngModel)]="pensioner.BankDetails.PublicOrPrivateBank" >
-</div>
+  </div>
 
 
+
+</div>
+
+<section class="h-100 h-custom" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card border-top border-bottom border-3" style="border-color: #f37a27 !important;">
+          <div class="card-body p-5">
+
+            <p class="lead fw-bold mb-5" style="color: #f37a27;">Pensioner Details</p>
+
+
+
+            <div class="mx-n5 px-5 py-4" style="background-color: #f2f2f2;">
+
+              <div class="row">
+                <div class="col-md-8 col-lg-9">
+                  <p class="mb-0">Name</p>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                  <label name="Name" [innerHTML]="pensioner.Name" id="lblbankServiceCharge"></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 col-lg-9">
+                  <p class="mb-0">DOB</p>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                  <label name="DOB" [innerHTML]="pensioner.DateOfBirth" id="lblbankServiceCharge"></label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-8 col-lg-9">
+                  <p class="mb-0">Aadhaar Number</p>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                  <label name="AadhaarNumber" [innerHTML]="pensioner.AadhaarNumber" id="lblbankServiceCharge"></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 col-lg-9">
+                  <p class="mb-0">PAN</p>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                  <label name="PAN" [innerHTML]="pensioner.PAN" id="lblbankServiceCharge"></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 col-lg-9">
+                  <p class="mb-0">SalaryEarned</p>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                  <label name="SalaryEarned" [innerHTML]="pensioner.SalaryEarned" id="lblbankServiceCharge"></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 col-lg-9">
+                  <p class="mb-0">Allowances</p>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                  <label name="Allowances" [innerHTML]="pensioner.Allowances" id="lblbankServiceCharge"></label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-8 col-lg-9">
+                  <p class="mb-0">SelfOrFamilyPension</p>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                  <label name="SelfOrFamilyPension" [innerHTML]="pensioner.SelfOrFamilyPension"
+                    id="lblbankServiceCharge"></label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-8 col-lg-9">
+                  <p class="mb-0">BankName</p>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                  <label name="BankName" [innerHTML]="pensioner.BankDetails.BankName" id="lblbankServiceCharge"></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 col-lg-9">
+                  <p class="mb-0">AccountNumber</p>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                  <label name="AccountNumber" [innerHTML]="pensioner.BankDetails.AccountNumber"
+                    id="lblbankServiceCharge"></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 col-lg-9">
+                  <p class="mb-0">PublicOrPrivateBank</p>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                  <label name="PublicOrPrivateBank" [innerHTML]="pensioner.BankDetails.PublicOrPrivateBank"
+                    id="lblbankServiceCharge"></label>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

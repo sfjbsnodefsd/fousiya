@@ -31,6 +31,7 @@ export class PensionerDetailComponent implements OnInit {
            
         },
         (httpErrorResponse:any)=>{
+          alert("pensioner does not exists");
           console.log("ERROR LOGIN")
           console.log(httpErrorResponse.error);
         }
