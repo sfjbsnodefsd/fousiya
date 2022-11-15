@@ -3,7 +3,7 @@ const app = express();
 require("dotenv").config();
 const mongoose = require("mongoose");
 const PensionerDetail = require("./pensioner");
-const checktoken = require("./isAuthenticated");
+const checktoken = require('./isAuthenticated');
 var csv = require('csvtojson');
 const {success,fail} = require('./http.response')
 const cors= require('cors');
@@ -59,7 +59,7 @@ mongoose.connect(
 
 
 // create a new pensioner
-app.get("/getPensionerDetailByAadhaar/:aadhaar",cors(), async (req, res) => {
+app.get("/getPensionerDetailByAadhaar/:aadhaar",checktoken,cors(), async (req, res) => {
   try {
     console.log(req);
     const pensioner = await PensionerDetail.findOne({ AadhaarNumber: req.params.aadhaar });

@@ -24,7 +24,7 @@ export class PensionerDetailComponent implements OnInit {
 
     pensionerDetails.subscribe(
         (response: any) => {
-          alert("valid pensioner");
+          
          // const showDetails:boolean =true;
          this.pensioner = response.message;
          const a:number = 10;

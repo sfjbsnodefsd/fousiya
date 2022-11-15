@@ -12,7 +12,7 @@ export class PensionerDetail {
 
   getPensionerDetails(aadhaarNUmber:number, auth: string): any {
     const url = `${endpoint}/${aadhaarNUmber}`;
-        return this.http.get(url, { headers: { "Autherization": `Bearer ${auth}` } });
+        return this.http.get(url, { headers: { "authorization": `Bearer ${auth}` } });
   }
 
   constructor(private http: HttpClient) { }
