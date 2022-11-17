@@ -1,14 +1,53 @@
-// // Requiring module
-// const assert = require('assert');
-// const {create,getUserByUserEmail} = require('../service/user.service')
-// const User = require("../models/user");
+const mongoose = require("mongoose");
+const { describe, expect, test } = require("@jest/globals");
 
-// module.exports = async it => {
-     
- 
-//     it("User Registration Test", () => eq(1 + 1, 2));
- 
-//     it("Get User By Email Test", () => eq(1 + 2, 3));
- 
-//     it("fib 03", () => eq(2 + 3, 5));
-// };
+
+describe('Testing User Service ', () => {
+    const User = require("../models/user");
+    test('Testing new User registration with new user details', () => {
+        //given const { jest } = require('@jest/globals')
+
+
+        const mongooseConnectMock = jest.spyOn(mongoose, "connect");
+        mongooseConnectMock.mockImplementation(() => "");
+
+
+        const userService = require("../service/user.service");
+
+        const tetUser = new User(
+            {
+                email: "admin@example.com",
+                password: "admin123",
+                name: "Admin"
+            }
+        )
+
+        const userFindMock = jest.spyOn(User,"findOne");
+        userFindMock.mockReturnValue(undefined);
+
+        const userObjectMock = jest.spyOn(userService,"createUserobject")
+        userObjectMock.mockReturnValue(tetUser);
+
+
+        const userSaveMock = jest.spyOn(tetUser,"save")
+        userSaveMock.mockReturnValue(true);
+
+        userService.create(tetUser,(err,user)=>{
+            expect(err).toBe(null);
+            expect(user).toBe(tetUser);
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+    })
+
+})

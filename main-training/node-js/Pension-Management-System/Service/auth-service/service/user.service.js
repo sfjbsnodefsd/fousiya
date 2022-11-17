@@ -26,21 +26,24 @@ module.exports = {
 
     try {
       existingUser = await User.findOne({ email });
-    } catch (err) {
+      console.log(existingUser);
+
+
+      if (existingUser) {
+        return callbackFn("User already exists");
+      } else {
+
+        const newUser = module.exports.createUserobject(name, email, password);
+        console.log("name" + newUser.name);
+
+        newUser.save();
+        return callbackFn(null, newUser);
+      }
+    }
+    catch (err) {
       return callbackFn("Error While Connecting With Database");
     }
 
-    if (existingUser) {
-      return callbackFn("User already exists");
-    } else {
-      const newUser = new User({
-        name,
-        email,
-        password,
-      });
-      newUser.save();
-      return callbackFn(null, newUser);
-    }
   }),
   getUserByUserEmail: (async (user, callbackFn) => {
     const { email } = user;
@@ -52,7 +55,10 @@ module.exports = {
 
     return callbackFn(null, existingUser);
   }),
+  createUserobject: (name, email, password) => {
+    return new User({ name, email, password })
 
+  }
 
 };
 
