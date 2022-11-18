@@ -76,6 +76,29 @@ app.get("/getPensionerDetailByAadhaar/:aadhaar",checktoken,cors(), async (req, r
 });
 
 
+app.put("/updatePensionerDetails",async(req,res)=>{
+  try{
+    const {AadhaarNumber} = req.body;
+    const pensioner =await PensionerDetail.findOne({"AadhaarNumber":AadhaarNumber});
+    if(!pensioner){
+      return fail(res,"Pensioner details not found");
+    }
+    
+   const updatedPensioner = pensioner.updateOne(req.body);
+
+   updatedPensioner.save();
+  }catch(dbCallError){
+    return res.status(400).send(dbCallError);
+  }
+
+})
+
+
+
+
+
+
+
 app.listen(5001, () => {
   console.log(`pensioner detail service is working at port 5001 ${process.env.PORT}`);
 });
