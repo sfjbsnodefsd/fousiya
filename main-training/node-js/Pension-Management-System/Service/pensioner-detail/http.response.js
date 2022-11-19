@@ -6,9 +6,9 @@ module.exports = {
             message: result,
         });
     },
-    fail: (res, message) => {
+    fail: (res, message,status = 500) => {
         console.log(message);        
-        return res.status(500).json({
+        return res.status(status).json({
             success: 0,
             message: message,
         });
