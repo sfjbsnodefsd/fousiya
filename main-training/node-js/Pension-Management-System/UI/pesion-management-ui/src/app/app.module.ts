@@ -9,6 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { PensionerDetailComponent } from './components/pensioner-detail/pensioner-detail.component';
 import { ProcessPensionComponent } from './components/process-pension/process-pension.component';
+import { PentionersListComponent } from './components/pentioners-list/pentioners-list.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { ProcessPensionComponent } from './components/process-pension/process-pe
     HomeComponent,
     PensionerDetailComponent,
     ProcessPensionComponent,
+    PentionersListComponent,
    
   ],
   imports: [

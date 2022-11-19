@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Pensioner } from '../Entity/pensioner';
-const endpoint = 'http://localhost:5001/getPensionerDetailByAadhaar'
+const endpoint = 'http://localhost:5001'
 @Injectable({
   providedIn: 'root',
 })
@@ -11,8 +11,14 @@ const endpoint = 'http://localhost:5001/getPensionerDetailByAadhaar'
 export class PensionerDetail {
 
   getPensionerDetails(aadhaarNUmber:number, auth: string): any {
-    const url = `${endpoint}/${aadhaarNUmber}`;
+    const url = `${endpoint}/getPensionerDetailByAadhaar/${aadhaarNUmber}`;
         return this.http.get(url, { headers: { "authorization": `Bearer ${auth}` } });
+  }
+
+  getAllPensionerDetail(auth:string){
+    const url = `${endpoint}/getAllPensionerDetails`;
+    return this.http.get(url,{headers:{"authorization":`Bearer ${auth}`}});
+
   }
 
   constructor(private http: HttpClient) { }

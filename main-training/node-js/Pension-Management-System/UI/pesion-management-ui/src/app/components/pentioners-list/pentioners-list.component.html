@@ -1,0 +1,20 @@
+<h1>pentioners-list</h1>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Aadhaar Number</th>
+            <th scope="col">Date Of Birth</th>
+        </tr>
+    </thead>
+        <tbody>
+            <tr *ngFor="let pensioner of pensionerList; index as i; ">
+                <td [innerHTML]="i+1"></td>
+                <td [innerHTML]="pensioner.Name"></td>
+                <td [innerHTML]="pensioner.AadhaarNumber"></td>
+                <td [innerHTML]="pensioner.DateOfBirth"></td>
+            </tr>
+        </tbody>
+        </table>

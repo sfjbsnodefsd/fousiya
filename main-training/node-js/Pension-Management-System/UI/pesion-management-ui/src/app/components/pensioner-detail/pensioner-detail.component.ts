@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Pensioner} from 'src/app/Entity/pensioner';
-import { PensionerDetail } from 'src/app/services/user.detail.service';
+import { PensionerDetail } from 'src/app/services/pensioner.detail.service';
 
 @Component({
   selector: 'app-pensioner-detail',
@@ -27,7 +27,7 @@ export class PensionerDetailComponent implements OnInit {
           
          // const showDetails:boolean =true;
          this.pensioner = response.message;
-         const a:number = 10;
+       
            
         },
         (httpErrorResponse:any)=>{
