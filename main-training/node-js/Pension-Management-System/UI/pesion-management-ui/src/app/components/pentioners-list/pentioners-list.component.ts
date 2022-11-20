@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { response } from 'express';
+import { PensionerEditViewAction } from 'src/app/Entity/pensioner.editview.action.enum';
+
 import { Pensioner } from 'src/app/Entity/pensioner';
 import { PensionerDetail } from 'src/app/services/pensioner.detail.service';
 
@@ -10,7 +12,35 @@ import { PensionerDetail } from 'src/app/services/pensioner.detail.service';
   styleUrls: ['./pentioners-list.component.css']
 })
 export class PentionersListComponent implements OnInit {
-   pensionerList: Pensioner[] = [];
+  action:PensionerEditViewAction = PensionerEditViewAction.LIST;
+  pensionerEditViewAction = PensionerEditViewAction;
+
+pensioner: Pensioner = new Pensioner();
+  CreatePensioner() {
+    const auth = localStorage.getItem('userToken');
+    if (auth == null || auth.trim() == '') {
+      alert('unauthorized attempt');
+    }
+    else {
+      const createResult = this.pensionerDetail.createPensioner(auth,this.pensioner);
+      createResult.subscribe((response: any) => {
+        console.log(response.message);
+        alert(response.message);
+
+      }), (httpErrorResponse: any) => {
+        console.log(httpErrorResponse.error);
+        alert('failed to creating new pensioner ');
+      }
+
+    }
+
+
+  };
+
+
+
+
+  pensionerList: Pensioner[] = [];
 
   getAllpensionerDetails() {
     const auth = localStorage.getItem('userToken');
@@ -20,7 +50,7 @@ export class PentionersListComponent implements OnInit {
       const getAllDetails = this.pensionerDetail.getAllPensionerDetail(auth);
       getAllDetails.subscribe((response: any) => {
         const pensioners = response.message;
-        let pensioner:Pensioner;
+        let pensioner: Pensioner;
         for (let i = 0; i < pensioners.length; i++) {
           pensioner = new Pensioner();
           pensioner.Name = pensioners[i].Name;
@@ -30,7 +60,7 @@ export class PentionersListComponent implements OnInit {
           pensioner.SalaryEarned = pensioners[i].SalaryEarned;
           pensioner.Allowances = pensioners[i].Allowances;
           pensioner.SelfOrFamilyPension = pensioners[i].SelfOrFamilyPension;
-          pensioner.BankDetails.BankName =pensioners[i].BankDetails.BankName;
+          pensioner.BankDetails.BankName = pensioners[i].BankDetails.BankName;
           pensioner.BankDetails.AccountNumber = pensioners[i].BankDetails.AccountNumber;
           pensioner.BankDetails.PublicOrPrivateBank = pensioners[i].BankDetails.PublicOrPrivateBank;
           this.pensionerList.push(pensioner);
@@ -51,11 +81,17 @@ export class PentionersListComponent implements OnInit {
   ngOnInit(): void {
     //service call get list
     this.getAllpensionerDetails();
+    this.action = PensionerEditViewAction.LIST;
 
     //for loop list
     //each one pensioner
     //create pensioner object
     //array.push
+  }
+
+  changeAction(action:PensionerEditViewAction){
+   this.action = action;
+
   }
 
 }

@@ -1,0 +1,82 @@
+<!-- pensioner Create starts-->
+<div *ngIf="action == pensionerEditViewAction.CREATE" class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+  <form>
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input name="email" type="email" [(ngModel)]="pensioner.Name" id="form3Example3"
+        class="form-control form-control-lg" placeholder="Enter Name" />
+      <label class="form-label" for="form3Example3">Name</label>
+    </div>
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input name="email" type="email" [(ngModel)]="pensioner.DateOfBirth" id="form3Example3"
+        class="form-control form-control-lg" placeholder="Enter DateOfBirth" />
+      <label class="form-label" for="form3Example3">DateOfBirth</label>
+    </div>
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input name="email" type="email" [(ngModel)]="pensioner.AadhaarNumber" id="form3Example3"
+        class="form-control form-control-lg" placeholder="Enter AadhaarNumber" />
+      <label class="form-label" for="form3Example3">AadhaarNumber</label>
+    </div>
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input name="email" type="email" [(ngModel)]="pensioner.PAN" id="form3Example3"
+        class="form-control form-control-lg" placeholder="Enter PAN" />
+      <label class="form-label" for="form3Example3">PAN</label>
+    </div>
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input name="email" type="email" [(ngModel)]="pensioner.SalaryEarned" id="form3Example3"
+        class="form-control form-control-lg" placeholder="Enter SalaryEarned" />
+      <label class="form-label" for="form3Example3">SalaryEarned</label>
+    </div>
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input name="email" type="email" [(ngModel)]="pensioner. Allowances" id="form3Example3"
+        class="form-control form-control-lg" placeholder="Enter Allowances" />
+      <label class="form-label" for="form3Example3">Allowances</label>
+    </div>
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input name="email" type="email" [(ngModel)]="pensioner.SelfOrFamilyPension" id="form3Example3"
+        class="form-control form-control-lg" placeholder="Enter SelfOrFamilyPension" />
+      <label class="form-label" for="form3Example3">SelfOrFamilyPension</label>
+    </div>
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input name="email" type="email" [(ngModel)]="pensioner.BankDetails.BankName" id="form3Example3"
+        class="form-control form-control-lg" placeholder="Enter BankName" />
+      <label class="form-label" for="form3Example3">BankName</label>
+    </div>
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input name="email" type="email" [(ngModel)]="pensioner.BankDetails.AccountNumber" id="form3Example3"
+        class="form-control form-control-lg" placeholder="Enter AccountNumber" />
+      <label class="form-label" for="form3Example3">AccountNumber</label>
+    </div>
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input name="email" type="email" [(ngModel)]="pensioner.BankDetails.PublicOrPrivateBank" id="form3Example3"
+        class="form-control form-control-lg" placeholder="Enter PublicOrPrivateBank" />
+      <label class="form-label" for="form3Example3">PublicOrPrivateBank</label>
+    </div>
+    <div class="text-center text-lg-start mt-4 pt-2">
+      <button type="button" (click)="CreatePensioner()" class="btn btn-primary btn-lg"
+        style="padding-left: 2.5rem; padding-right: 2.5rem;">Register</button>
+
+    </div>
+
+  </form>
+</div>
+
+<!-- pensioner Create ends-->
+<!-- pensioner Update starts-->
+<div *ngIf="action == pensionerEditViewAction.EDIT">Update</div>
+<!-- pensioner Update ends-->
+<!-- pensioner View starts-->
+<div *ngIf="action == pensionerEditViewAction.VIEW">View</div>
+<!-- pensioner View ends-->

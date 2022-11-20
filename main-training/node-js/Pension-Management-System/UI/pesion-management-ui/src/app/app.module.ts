@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PensionerDetailComponent } from './components/pensioner-detail/pensioner-detail.component';
 import { ProcessPensionComponent } from './components/process-pension/process-pension.component';
 import { PentionersListComponent } from './components/pentioners-list/pentioners-list.component';
+import { PensionerEditViewComponent } from './components/pensioner-edit-view/pensioner-edit-view.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { PentionersListComponent } from './components/pentioners-list/pentioners
     PensionerDetailComponent,
     ProcessPensionComponent,
     PentionersListComponent,
+    PensionerEditViewComponent,
    
   ],
   imports: [

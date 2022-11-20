@@ -20,6 +20,10 @@ export class PensionerDetail {
     return this.http.get(url,{headers:{"authorization":`Bearer ${auth}`}});
 
   }
+  createPensioner(auth:string,pensioner:Pensioner){
+    const url =  `${endpoint}/createPensionerDetail`;
+    return this.http.post(url,pensioner,{headers:{"authorization":`Bearer ${auth}`}});
+  }
 
   constructor(private http: HttpClient) { }
 }

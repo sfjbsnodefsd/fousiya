@@ -1,0 +1,11 @@
+#create{
+    position: fixed;
+    right: 200px;
+    height: 50px;
+    size: 50ch;
+    top: 30px;
+}
+
+.pointer{
+    cursor: pointer;
+}

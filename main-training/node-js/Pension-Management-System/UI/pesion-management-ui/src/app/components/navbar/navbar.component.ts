@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, UrlSegment } from '@angular/router';
+import User from 'src/app/Entity/user';
 
 @Component({
   selector: 'app-navbar',
@@ -25,6 +26,8 @@ export class NavbarComponent implements OnInit {
     if(!token || token.trim() ==''){
       this.router.navigate(['/login']);
    }
+
+   this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
 }
