@@ -24,15 +24,33 @@ export class PensionerEditViewComponent implements OnInit {
         console.log(response.message);
         alert(response.message);
 
-      }), (httpErrorResponse: any) => {
+      }, (httpErrorResponse: any) => {
         console.log(httpErrorResponse.error);
-        alert('failed to creating new pensioner ');
-      }
+        alert(httpErrorResponse.error.message);
+      })
 
     }
 
 
   };
+  UpdatePensioner() {
+    const auth = localStorage.getItem('userToken');
+    if (auth == null || auth.trim() == '') {
+      alert('unauthorized attempt');
+    }
+    else{
+      //const updateResult = this.pensionerDetail.
+    }
+
+
+
+  }
+
+
+
+
+
+
   constructor(private pensionerDetail: PensionerDetail) { }
 
   ngOnInit(): void {

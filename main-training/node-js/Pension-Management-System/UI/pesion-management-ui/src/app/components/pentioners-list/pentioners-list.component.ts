@@ -13,29 +13,30 @@ import { PensionerDetail } from 'src/app/services/pensioner.detail.service';
 })
 export class PentionersListComponent implements OnInit {
   action:PensionerEditViewAction = PensionerEditViewAction.LIST;
+  pensionerTitle:String = "Pentioners-List";
   pensionerEditViewAction = PensionerEditViewAction;
 
-pensioner: Pensioner = new Pensioner();
-  CreatePensioner() {
-    const auth = localStorage.getItem('userToken');
-    if (auth == null || auth.trim() == '') {
-      alert('unauthorized attempt');
-    }
-    else {
-      const createResult = this.pensionerDetail.createPensioner(auth,this.pensioner);
-      createResult.subscribe((response: any) => {
-        console.log(response.message);
-        alert(response.message);
+// pensioner: Pensioner = new Pensioner();
+//   CreatePensioner() {
+//     const auth = localStorage.getItem('userToken');
+//     if (auth == null || auth.trim() == '') {
+//       alert('unauthorized attempt');
+//     }
+//     else {
+//       const createResult = this.pensionerDetail.createPensioner(auth,this.pensioner);
+//       createResult.subscribe((response: any) => {
+//         console.log(response.message);
+//         alert(response.message);
 
-      }), (httpErrorResponse: any) => {
-        console.log(httpErrorResponse.error);
-        alert('failed to creating new pensioner ');
-      }
+//       }), (httpErrorResponse: any) => {
+//         console.log(httpErrorResponse.error);
+//         alert('failed to creating new pensioner ');
+//       }
 
-    }
+//     }
 
 
-  };
+//   };
 
 
 
@@ -83,14 +84,22 @@ pensioner: Pensioner = new Pensioner();
     this.getAllpensionerDetails();
     this.action = PensionerEditViewAction.LIST;
 
-    //for loop list
-    //each one pensioner
-    //create pensioner object
-    //array.push
+   
   }
 
   changeAction(action:PensionerEditViewAction){
    this.action = action;
+   switch(action){
+    case PensionerEditViewAction.CREATE:
+      this.pensionerTitle = "Pensioner Create";
+      break;
+      case PensionerEditViewAction.VIEW:
+      this.pensionerTitle = "Pensioner View";
+      break;
+      case PensionerEditViewAction.EDIT:
+        this.pensionerTitle = "Pensioner Edit";
+        break;
+   }
 
   }
 

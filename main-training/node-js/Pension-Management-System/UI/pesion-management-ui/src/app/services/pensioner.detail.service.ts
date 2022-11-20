@@ -25,5 +25,11 @@ export class PensionerDetail {
     return this.http.post(url,pensioner,{headers:{"authorization":`Bearer ${auth}`}});
   }
 
+
+updatePensioner(){}
+
+
+
+
   constructor(private http: HttpClient) { }
 }

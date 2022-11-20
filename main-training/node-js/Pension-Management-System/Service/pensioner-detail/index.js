@@ -91,8 +91,8 @@ app.post("/createPensionerDetail", checktoken, cors(), async (req, res) => {
     const pensionerRequest = req.body;
     const { AadhaarNumber } = req.body;
     const pensioner = await PensionerDetail.findOne({ "AadhaarNumber": AadhaarNumber });
-    if (pensioner) {findOne
-      return fail(res, "Pensioner details already exists");
+    if (pensioner) {
+      return fail(res, "Pensioner details already exists",400);
     }
 
     const newPensionerDetail = new PensionerDetail({

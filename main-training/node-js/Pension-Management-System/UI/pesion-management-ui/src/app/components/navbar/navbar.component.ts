@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['/login']);
    }
 
-   this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+   //this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
 }
