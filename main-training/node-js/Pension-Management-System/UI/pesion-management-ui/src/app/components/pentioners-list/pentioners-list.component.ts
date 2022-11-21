@@ -87,9 +87,9 @@ export class PentionersListComponent implements OnInit {
    
   }
 
-  changeAction(action:PensionerEditViewAction){
-   this.action = action;
-   switch(action){
+  changeAction(clickAction:PensionerEditViewAction){
+   this.action = clickAction;
+   switch(clickAction){
     case PensionerEditViewAction.CREATE:
       this.pensionerTitle = "Pensioner Create";
       break;

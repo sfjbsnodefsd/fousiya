@@ -39,7 +39,18 @@ export class PensionerEditViewComponent implements OnInit {
       alert('unauthorized attempt');
     }
     else{
-      //const updateResult = this.pensionerDetail.
+      const updateResult = this.pensionerDetail.updatePensioner(auth,this.pensioner);
+      updateResult.subscribe((response:any)=>{
+      const result = response.message;
+      console.log(response.message);
+      alert(response.message);
+      },
+      (httpErrorResponse:any)=>{
+        alert(httpErrorResponse.error.message);
+        console.log(httpErrorResponse.error.message);
+      })
+  
+    
     }
 
 
@@ -54,6 +65,10 @@ export class PensionerEditViewComponent implements OnInit {
   constructor(private pensionerDetail: PensionerDetail) { }
 
   ngOnInit(): void {
+
+    //adhaar input
+    //service call get detailsadhaar
+
   }
 
 }

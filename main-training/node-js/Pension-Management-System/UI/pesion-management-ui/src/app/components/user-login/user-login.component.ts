@@ -26,7 +26,7 @@ export class UserLoginComponent implements OnInit {
       },
       (httpErrorResponse: any) => {
         console.log("ERROR LOGIN")
-        alert(httpErrorResponse.error);
+        alert(httpErrorResponse.error.message);
       }
 
     );
@@ -37,7 +37,7 @@ export class UserLoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
-    
+  
   }
 
 }

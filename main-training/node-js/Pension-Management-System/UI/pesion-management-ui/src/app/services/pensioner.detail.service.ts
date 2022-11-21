@@ -26,7 +26,11 @@ export class PensionerDetail {
   }
 
 
-updatePensioner(){}
+updatePensioner(auth:string,pensioner:Pensioner){
+  const url = `${endpoint}/updatePensionerDetails`;
+  return this.http.put(url,pensioner,{headers:{"authorization": `Bearer ${auth}`}});
+}
+
 
 
 
