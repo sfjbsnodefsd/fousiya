@@ -154,5 +154,39 @@
 </div>
 <!-- pensioner Update ends-->
 <!-- pensioner View starts-->
-<div *ngIf="action == pensionerEditViewAction.VIEW">View</div>
+<div *ngIf="action == pensionerEditViewAction.VIEW">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Date Of Birth</th>
+        <th scope="col">Aadhaar Number</th>
+        <th scope="col">PAN </th>
+        <th scope="col">SalaryEarned </th>
+        <th scope="col">Allowances  </th>
+        <th scope="col">SelfOrFamilyPension </th>
+        <th scope="col">BankName  </th>
+        <th scope="col">AccountNumber  </th>
+        <th scope="col">PublicOrPrivateBank  </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pensioner of pensionerList; index as i; ">
+        <td [innerHTML]="i+1"></td>
+        <td [innerHTML]="pensioner.Name"></td>
+        <td [innerHTML]="pensioner.DateOfBirth"></td>
+        <td [innerHTML]="pensioner.AadhaarNumber"></td>
+        <td [innerHTML]="pensioner.PAN"></td>
+        <td [innerHTML]="pensioner.SalaryEarned"></td>
+        <td [innerHTML]="pensioner.Allowances"></td>
+        <td [innerHTML]="pensioner.SelfOrFamilyPension"></td>
+        <td [innerHTML]="pensioner.BankDetails.BankName"></td>
+        <td [innerHTML]="pensioner.BankDetails.AccountNumber"></td>
+        <td [innerHTML]="pensioner.BankDetails.PublicOrPrivateBank"></td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>
 <!-- pensioner View ends-->
