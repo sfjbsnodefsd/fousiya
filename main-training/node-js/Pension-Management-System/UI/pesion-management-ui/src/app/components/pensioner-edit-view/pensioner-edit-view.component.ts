@@ -2,10 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PensionerEditViewAction } from 'src/app/Entity/pensioner.editview.action.enum';
 import { Pensioner } from 'src/app/Entity/pensioner';
 import { PensionerDetail } from 'src/app/services/pensioner.detail.service';
-import { response } from 'express';
-import { HttpErrorResponse } from '@angular/common/http';
-import {PentionersListComponent} from 'src/app/components/pentioners-list/pentioners-list.component';
-
+import { PentionersListComponent } from 'src/app/components/pentioners-list/pentioners-list.component';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap'; 
 
 @Component({
   selector: 'app-pensioner-edit-view',
@@ -14,47 +12,42 @@ import {PentionersListComponent} from 'src/app/components/pentioners-list/pentio
 })
 export class PensionerEditViewComponent implements OnInit {
   @Input() action: PensionerEditViewAction = PensionerEditViewAction.VIEW;
+
   pensionerEditViewAction = PensionerEditViewAction;
   pensioner: Pensioner = new Pensioner();
+  @Input() aadharNumber: String = '';
 
 
 
-
-  pensionerList: Pensioner[] = [];
-
-  getAllpensionerDetails() {
+  getDetail() {
     const auth = localStorage.getItem('userToken');
+    // const showDetails:boolean =false;
     if (auth == null || auth.trim() == '') {
-      alert('unauthorized person trying to access pensioner details');
-    } else {
-      const getAllDetails = this.pensionerDetail.getAllPensionerDetail(auth);
-      getAllDetails.subscribe((response: any) => {
-        const pensioners = response.message;
-        let pensioner: Pensioner;
-        for (let i = 0; i < pensioners.length; i++) {
-          pensioner = new Pensioner();
-          pensioner.Name = pensioners[i].Name;
-          pensioner.DateOfBirth = pensioners[i].DateOfBirth;
-          pensioner.AadhaarNumber = pensioners[i].AadhaarNumber;
-          pensioner.PAN = pensioners[i].PAN;
-          pensioner.SalaryEarned = pensioners[i].SalaryEarned;
-          pensioner.Allowances = pensioners[i].Allowances;
-          pensioner.SelfOrFamilyPension = pensioners[i].SelfOrFamilyPension;
-          pensioner.BankDetails.BankName = pensioners[i].BankDetails.BankName;
-          pensioner.BankDetails.AccountNumber = pensioners[i].BankDetails.AccountNumber;
-          pensioner.BankDetails.PublicOrPrivateBank = pensioners[i].BankDetails.PublicOrPrivateBank;
-          this.pensionerList.push(pensioner);
-        }
-        console.log(this.pensionerList);
-      }, (HttpErrorResponse: any) => {
-        alert('cannot findpensioner details');
-        console.log(HttpErrorResponse.error);
-      });
+      console.log(" unautherized");
+      alert("unautherized user trying to access details");
+    }
+    else {
+      const pensionerDetails = this.pensionerDetail.getPensionerDetails(this.aadharNumber, auth);
 
+      pensionerDetails.subscribe(
+        (response: any) => {
+
+          // const showDetails:boolean =true;
+          this.pensioner = response.message;
+
+
+        },
+        (httpErrorResponse: any) => {
+          alert("pensioner does not exists");
+          console.log("ERROR LOGIN")
+          console.log(httpErrorResponse.error);
+        }
+
+      );
     }
 
-
   }
+
 
 
   CreatePensioner() {
@@ -86,15 +79,35 @@ export class PensionerEditViewComponent implements OnInit {
       const updateResult = this.pensionerDetail.updatePensioner(auth, this.pensioner);
       updateResult.subscribe((response: any) => {
         const result = response.message;
+        console.log(result);
+        alert(response.message);
+      }, (httpErrorResponse: any) => {
+        alert(httpErrorResponse.error.message);
+        console.log(httpErrorResponse.error.message);
+      })
+
+
+    }
+
+
+
+
+
+  }
+  deletePensioner() {
+    const auth = localStorage.getItem('userToken');
+    if (auth == null || auth.trim() == '') {
+      alert('unautherized');
+    }
+    else {
+      const deletedResponse = this.pensionerDetail.deleteRecord(auth, this.aadharNumber);
+      deletedResponse.subscribe((response: any) => {
         console.log(response.message);
         alert(response.message);
-      },
-        (httpErrorResponse: any) => {
-          alert(httpErrorResponse.error.message);
-          console.log(httpErrorResponse.error.message);
-        })
-
-
+      }, (HttpErrorResponse: any) => {
+        alert(HttpErrorResponse.error.message);
+        console.log(HttpErrorResponse.error.message);
+      })
     }
 
 
@@ -106,13 +119,17 @@ export class PensionerEditViewComponent implements OnInit {
 
 
 
-  constructor(private pensionerDetail: PensionerDetail, pentionersListComponent:PentionersListComponent) { }
+
+
+  constructor(private pensionerDetail: PensionerDetail,modalService: NgbModal) { }
 
   ngOnInit(): void {
 
-    this.getAllpensionerDetails();
-    
-    
+    this.getDetail();
+
+    //this.pensioner.AadhaarNumber= Cu
+
+
     //adhaar input
     //service call get detailsadhaar
 
