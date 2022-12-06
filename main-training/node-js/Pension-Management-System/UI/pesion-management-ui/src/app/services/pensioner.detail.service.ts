@@ -10,7 +10,7 @@ const endpoint = 'http://localhost:5001'
 
 export class PensionerDetail {
 
-  getPensionerDetails(aadhaarNUmber:number, auth: string): any {
+  getPensionerDetails(aadhaarNUmber:String, auth: string): any {
     const url = `${endpoint}/getPensionerDetailByAadhaar/${aadhaarNUmber}`;
         return this.http.get(url, { headers: { "authorization": `Bearer ${auth}` } });
   }
@@ -31,6 +31,10 @@ updatePensioner(auth:string,pensioner:Pensioner){
   return this.http.put(url,pensioner,{headers:{"authorization": `Bearer ${auth}`}});
 }
 
+deleteRecord(auth:string,aadhaarNUmber:String){
+  const url =`${endpoint}/deletePensioner/${aadhaarNUmber}`;
+  return this.http.delete(url,{headers:{"authorization": `Bearer ${auth}`}});
+}
 
 
 

@@ -169,22 +169,22 @@ app.put("/updatePensionerDetails", checktoken, cors(), async (req, res) => {
 
 });
 
-app.delete("/deletePensioner", checktoken, cors(), async (req, res) => {
-  const { AadhaarNumber } = req.body;
+app.delete("/deletePensioner/:aadhaar", checktoken, cors(), async (req, res) => {
+  const  AadhaarNumber  = req.params.aadhaar;
   try {
     const pensioner = PensionerDetail.findOne({ "AadhaarNumber": AadhaarNumber });
     if (pensioner) {
       const deleted = await PensionerDetail.deleteOne({ "AadhaarNumber": AadhaarNumber });
 
       if (deleted.deletedCount == 1)
-        return success(res, `The Aadhaar ${req.params.aadhaar} Deleted Successfully`);
+        return success(res, `The Aadhaar ${AadhaarNumber} Deleted Successfully`);
       else {
         console.log(deleted);
-        return fail(res, `The Aadhaar ${req.params.aadhaar} Not Deleted Successfully`);
+        return fail(res, `The Aadhaar ${AadhaarNumber} Not Deleted Successfully`);
       }
     }
     else {
-      return fail(res, `The Aadhaar ${req.params.aadhaar} Does Not Exists`)
+      return fail(res, `The Aadhaar ${AadhaarNumber} Does Not Exists`)
     }
   } catch (err) {
     console.log(err);

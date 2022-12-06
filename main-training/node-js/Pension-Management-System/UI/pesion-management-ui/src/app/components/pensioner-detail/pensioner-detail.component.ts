@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Pensioner} from 'src/app/Entity/pensioner';
+import { Pensioner } from 'src/app/Entity/pensioner';
 import { PensionerDetail } from 'src/app/services/pensioner.detail.service';
 
 @Component({
@@ -9,39 +9,38 @@ import { PensionerDetail } from 'src/app/services/pensioner.detail.service';
 })
 export class PensionerDetailComponent implements OnInit {
   pensioner: Pensioner = new Pensioner();
-  aadhaarNumber:number=0;
- 
+  aadhaarNumber: string = '';
+
   getDetail() {
     const auth = localStorage.getItem('userToken');
-   // const showDetails:boolean =false;
-    if(auth == null ||auth.trim() =='')
-    {
+    // const showDetails:boolean =false;
+    if (auth == null || auth.trim() == '') {
       console.log(" unautherized");
       alert("unautherized user trying to access details");
     }
-    else{
-      const pensionerDetails = this.pensionerDetail.getPensionerDetails(this.aadhaarNumber,auth);
+    else {
+      const pensionerDetails = this.pensionerDetail.getPensionerDetails(this.aadhaarNumber, auth);
 
-    pensionerDetails.subscribe(
+      pensionerDetails.subscribe(
         (response: any) => {
-          
-         // const showDetails:boolean =true;
-         this.pensioner = response.message;
-       
-           
+
+          // const showDetails:boolean =true;
+          this.pensioner = response.message;
+
+
         },
-        (httpErrorResponse:any)=>{
+        (httpErrorResponse: any) => {
           alert("pensioner does not exists");
           console.log("ERROR LOGIN")
           console.log(httpErrorResponse.error);
         }
-        
+
       );
+    }
+
   }
 
-    }
-   
-    
+
 
   constructor(private pensionerDetail: PensionerDetail) { }
 
