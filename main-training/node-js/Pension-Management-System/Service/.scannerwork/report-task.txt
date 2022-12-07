@@ -1,0 +1,6 @@
+projectKey=Pension-Management-SERVICE
+serverUrl=http://localhost:9000
+serverVersion=9.7.1.62043
+dashboardUrl=http://localhost:9000/dashboard?id=Pension-Management-SERVICE
+ceTaskId=AYTs7tnGGadC-VEf4vS4
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYTs7tnGGadC-VEf4vS4
