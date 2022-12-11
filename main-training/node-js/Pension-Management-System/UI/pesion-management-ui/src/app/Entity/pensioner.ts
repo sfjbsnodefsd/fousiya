@@ -1,12 +1,12 @@
 export class Pensioner {
     _id: string='';
-    Name: String='';
-    DateOfBirth: String='';
-    AadhaarNumber: String='';
-    PAN: String='';
+    Name: string='';
+    DateOfBirth: string='';
+    AadhaarNumber: string='';
+    PAN: string='';
     SalaryEarned: number=0;
     Allowances: number = 0
-    SelfOrFamilyPension: String='' ;
+    SelfOrFamilyPension: string='' ;
     BankDetails : BankDetails;
 
     constructor(){
@@ -16,7 +16,7 @@ export class Pensioner {
 }
 
  class BankDetails{
-    BankName: String = "";
+    BankName: string = "";
     AccountNumber: Number = 0;
-    PublicOrPrivateBank: String = "";
+    PublicOrPrivateBank: string = "";
 }

@@ -15,7 +15,7 @@ export class PensionerEditViewComponent implements OnInit {
 
   pensionerEditViewAction = PensionerEditViewAction;
   pensioner: Pensioner = new Pensioner();
-  @Input() aadharNumber: String = '';
+  @Input() aadharNumber: string = '';
 
 
 
