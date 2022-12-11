@@ -11,6 +11,7 @@ import { PensionerDetailComponent } from './components/pensioner-detail/pensione
 import { ProcessPensionComponent } from './components/process-pension/process-pension.component';
 import { PentionersListComponent } from './components/pentioners-list/pentioners-list.component';
 import { PensionerEditViewComponent } from './components/pensioner-edit-view/pensioner-edit-view.component';
+import { PensionerSearchComponent } from './components/pensioner-search/pensioner-search.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { PensionerEditViewComponent } from './components/pensioner-edit-view/pen
     ProcessPensionComponent,
     PentionersListComponent,
     PensionerEditViewComponent,
+    PensionerSearchComponent,
    
   ],
   imports: [

@@ -1,0 +1,18 @@
+<div class="form-outline mb-4">
+    <!-- <label class="form-label" for="form3Example3">Enter your aadhaar number</label> -->
+    <div class="col-md-6 col-lg-4 mt-20">
+  
+      <input name="aadhaarNumber" #adhaarSearch type="aadhaarNumber" id="form3Example3"
+        class="form-control form-control-lg" placeholder="Enter your aadhaar number" />
+  
+      <button style="margin: left 100px;" (click)="handleSearchClick(adhaarSearch.value)">Pensioner Detail</button> 
+  
+    </div>
+
+    <div>
+        <app-pensioner-detail [aadhaarNumber] = "aadhaarNumber"></app-pensioner-detail>
+    </div>
+  
+  
+  
+  </div>

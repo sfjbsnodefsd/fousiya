@@ -3,7 +3,7 @@ import { PensionerEditViewAction } from 'src/app/Entity/pensioner.editview.actio
 import { Pensioner } from 'src/app/Entity/pensioner';
 import { PensionerDetail } from 'src/app/services/pensioner.detail.service';
 import { PentionersListComponent } from 'src/app/components/pentioners-list/pentioners-list.component';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap'; 
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-pensioner-edit-view',
@@ -121,17 +121,11 @@ export class PensionerEditViewComponent implements OnInit {
 
 
 
-  constructor(private pensionerDetail: PensionerDetail,modalService: NgbModal) { }
+  constructor(private pensionerDetail: PensionerDetail, modalService: NgbModal) { }
 
   ngOnInit(): void {
 
     this.getDetail();
-
-    //this.pensioner.AadhaarNumber= Cu
-
-
-    //adhaar input
-    //service call get detailsadhaar
 
   }
 
