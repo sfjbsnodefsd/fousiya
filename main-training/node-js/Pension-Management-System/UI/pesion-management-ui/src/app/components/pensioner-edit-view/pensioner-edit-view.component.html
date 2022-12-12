@@ -1,81 +1,102 @@
-
-
 <!-- pensioner Create starts-->
-<div *ngIf="action == pensionerEditViewAction.CREATE" class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-  <form>
 
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.Name" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter Name" />
-      <label class="form-label" for="form3Example3">Name</label>
-    </div>
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.DateOfBirth" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter DateOfBirth" />
-      <label class="form-label" for="form3Example3">DateOfBirth</label>
-    </div>
-
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.AadhaarNumber" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter AadhaarNumber" />
-      <label class="form-label" for="form3Example3">AadhaarNumber</label>
-    </div>
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.PAN" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter PAN" />
-      <label class="form-label" for="form3Example3">PAN</label>
-    </div>
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.SalaryEarned" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter SalaryEarned" />
-      <label class="form-label" for="form3Example3">SalaryEarned</label>
-    </div>
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner. Allowances" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter Allowances" />
-      <label class="form-label" for="form3Example3">Allowances</label>
-    </div>
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.SelfOrFamilyPension" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter SelfOrFamilyPension" />
-      <label class="form-label" for="form3Example3">SelfOrFamilyPension</label>
-    </div>
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.BankDetails.BankName" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter BankName" />
-      <label class="form-label" for="form3Example3">BankName</label>
-    </div>
-
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.BankDetails.AccountNumber" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter AccountNumber" />
-      <label class="form-label" for="form3Example3">AccountNumber</label>
-    </div>
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.BankDetails.PublicOrPrivateBank" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter PublicOrPrivateBank" />
-      <label class="form-label" for="form3Example3">PublicOrPrivateBank</label>
-    </div>
-    <div class="text-center text-lg-start mt-4 pt-2">
-      <button type="button" (click)="CreatePensioner()" class="btn btn-primary btn-lg"
-        style="padding-left: 2.5rem; padding-right: 2.5rem;">Register</button>
-
-    </div>
-
-  </form>
-</div>
 
 <!-- pensioner Create ends-->
+<div *ngIf="action == pensionerEditViewAction.CREATE">
+  <section class="vh-100 bg-image"
+    style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body p-5">
+                <h2 class="text-uppercase text-center mb-5">Create a Pensioner</h2>
+
+                <form>
+                  <div class="form-outline mb-4">
+                    <input name="Name" type="text" [(ngModel)]="pensioner.Name" id="name"
+                      class="form-control form-control-lg" placeholder="Enter Name" />
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input name="DateOfBirth" type="text" [(ngModel)]="pensioner.DateOfBirth" id="DOB"
+                      class="form-control form-control-lg" placeholder="Enter Date of Birth" />
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input name="AadhaarNumber" type="text" [(ngModel)]="pensioner.AadhaarNumber" id="aadharNo"
+                      placeholder="Enter Aadhaar Number" class="form-control form-control-lg" />
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input name="PAN" type="text" [(ngModel)]="pensioner.PAN" id="PAN" placeholder="Enter PAN"
+                      class="form-control form-control-lg" />
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input name="SalaryEarned" id="salaryEarned" type="text" [(ngModel)]="pensioner.SalaryEarned"
+                      placeholder="Enter SalaryEarned" id="salaryEarned" class="form-control form-control-lg" />
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input name="Allowances" id="allowances" type="text" [(ngModel)]="pensioner.Allowances"
+                      placeholder="Enter Allowances" id="allowances" class="form-control form-control-lg" />
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input name="SelfOrFamilyPension" type="text" [(ngModel)]="pensioner.SelfOrFamilyPension"
+                      placeholder="Enter Self or family pension" id="selfOrfamily"
+                      class="form-control form-control-lg" />
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input name="BankName" type="text" [(ngModel)]="pensioner.BankDetails.BankName"
+                      placeholder="Enter BankName" id="bankName" class="form-control form-control-lg" />
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input name="AccountNumber" type="text" [(ngModel)]="pensioner.BankDetails.AccountNumber"
+                      placeholder="Enter AccountNumber" id="accountNo" class="form-control form-control-lg" />
+
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input name="PublicOrPrivateBank" type="text" type="PublicOrPrivateBank"
+                      [(ngModel)]="pensioner.BankDetails.PublicOrPrivateBank" id="privateOrPublic"
+                      placeholder="Enter public or private bank" class="form-control form-control-lg" />
+
+                  </div>
+
+
+
+
+
+
+                  <div class="d-flex justify-content-center">
+                    <button type="button" (click)="CreatePensioner()"
+                      class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                  </div>
+
+
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 <!-- pensioner Update starts-->
 <div *ngIf="action == pensionerEditViewAction.EDIT">
   <form>
@@ -155,6 +176,8 @@
 
 </div>
 <!-- pensioner Update ends-->
+
+
 <!-- pensioner View starts-->
 <div *ngIf="action == pensionerEditViewAction.VIEW">
   <table class="table">
@@ -190,160 +213,3 @@
   </table>
 </div>
 <!-- pensioner View ends-->
-
-
-
-
-
-<div *ngIf="action == pensionerEditViewAction.DELETE ">
-
-
-
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
-
-/* Set a style for all buttons */
-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-
-button:hover {
-  opacity:1;
-}
-
-/* Float cancel and delete buttons and add an equal width */
-.cancelbtn, .deletebtn {
-  float: left;
-  width: 50%;
-}
-
-/* Add a color to the cancel button */
-.cancelbtn {
-  background-color: #ccc;
-  color: black;
-}
-
-/* Add a color to the delete button */
-.deletebtn {
-  background-color: #f44336;
-}
-
-/* Add padding and center-align text to the container */
-.container {
-  padding: 16px;
-  text-align: center;
-}
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: #474e5d;
-  padding-top: 50px;
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* Style the horizontal ruler */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
- 
-/* The Modal Close Button (x) */
-.close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #f1f1f1;
-}
-
-.close:hover,
-.close:focus {
-  color: #f44336;
-  cursor: pointer;
-}
-
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-/* Change styles for cancel button and delete button on extra small screens */
-@media screen and (max-width: 300px) {
-  .cancelbtn, .deletebtn {
-     width: 100%;
-  }
-}
-</style>
-<body>
-
-<!-- <h2>Delete Record</h2> -->
-
-<button onclick="document.getElementById('id01').style.display='block'">Open Modal</button>
-
-<div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-  <form class="modal-content" action="/action_page.php">
-    <div class="container">
-      <h1>Delete Account</h1>
-      <p>Are you sure you want to delete your account?</p>
-    
-      <div class="clearfix">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
-      </div>
-    </div>
-  </form>
-</div>
-
-<script>
-// Get the modal
-var modal = document.getElementById('id01');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
-
-</body>
-
-
-</div>
-
-
-<!-- 
-<div>
-  <link href=
-"https://fonts.googleapis.com/icon?family=Material+Icons&display=block" 
-        rel="stylesheet">
-  <div class ="content-container"></div>
-  <mat-icon  id="close-icon>close</mat-icon>
-</div>> -->

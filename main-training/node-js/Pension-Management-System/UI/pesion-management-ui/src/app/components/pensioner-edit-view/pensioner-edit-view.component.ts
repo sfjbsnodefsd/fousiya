@@ -14,43 +14,16 @@ export class PensionerEditViewComponent implements OnInit {
   @Input() action: PensionerEditViewAction = PensionerEditViewAction.VIEW;
 
   pensionerEditViewAction = PensionerEditViewAction;
+   @Input() aadharNumber: string = '';
+
+
   pensioner: Pensioner = new Pensioner();
-  @Input() aadharNumber: string = '';
-
-
-
-  getDetail() {
-    const auth = localStorage.getItem('userToken');
-    // const showDetails:boolean =false;
-    if (auth == null || auth.trim() == '') {
-      console.log(" unautherized");
-      alert("unautherized user trying to access details");
-    }
-    else {
-      const pensionerDetails = this.pensionerDetail.getPensionerDetails(this.aadharNumber, auth);
-
-      pensionerDetails.subscribe(
-        (response: any) => {
-
-          // const showDetails:boolean =true;
-          this.pensioner = response.message;
-
-
-        },
-        (httpErrorResponse: any) => {
-          alert("pensioner does not exists");
-          console.log("ERROR LOGIN")
-          console.log(httpErrorResponse.error);
-        }
-
-      );
-    }
-
-  }
-
-
 
   CreatePensioner() {
+    console.log(this.pensioner.Name);
+    console.log(this.pensioner.DateOfBirth);
+    console.log(this.pensioner.AadhaarNumber);
+    console.log(this.pensioner.PAN);
     const auth = localStorage.getItem('userToken');
     if (auth == null || auth.trim() == '') {
       alert('unauthorized attempt');
@@ -125,8 +98,9 @@ export class PensionerEditViewComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getDetail();
-
   }
 
+
+
 }
+

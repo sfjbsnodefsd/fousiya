@@ -68,6 +68,13 @@
 </ng-template>
 
 
+<div *ngIf="action == pensionerEditViewAction.CREATE">
+  <app-pensioner-edit-view [action] ="action"></app-pensioner-edit-view>
+</div>
+
+<div *ngIf="action == pensionerEditViewAction.EDIT">
+  <app-pensioner-edit-view [action] ="action"></app-pensioner-edit-view>
+</div>
 
 <div *ngIf="action == pensionerEditViewAction.VIEW">
   <app-pensioner-detail [aadhaarNumber] ="currentAadharNumber"></app-pensioner-detail>

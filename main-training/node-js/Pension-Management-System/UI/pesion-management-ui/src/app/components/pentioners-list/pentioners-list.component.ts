@@ -20,6 +20,7 @@ export class PentionersListComponent implements OnInit {
   currentAadharNumber: string = "";
   pensionerEditViewAction = PensionerEditViewAction;
 
+
   pensionerList: Pensioner[] = [];
 
   getAllpensionerDetails() {
@@ -62,10 +63,14 @@ export class PentionersListComponent implements OnInit {
     this.action = clickAction;
     this.currentAadharNumber = adhaarNumber;
     switch (clickAction) {
+   
       case PensionerEditViewAction.CREATE:
-        this.pensionerTitle = "Pensioner Create";
+    
+        
+        this.pensionerTitle = "";
         break;
       case PensionerEditViewAction.VIEW:
+        
         this.pensionerTitle = "Pensioner View";
         break;
       case PensionerEditViewAction.EDIT:
