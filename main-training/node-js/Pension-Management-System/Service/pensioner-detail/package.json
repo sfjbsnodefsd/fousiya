@@ -2,9 +2,9 @@
   "name": "pensioner-detail",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "controller.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon controller.js",
     "test": "jest --coverage"
   },
   "author": "",
