@@ -4,6 +4,7 @@ import { Pensioner } from 'src/app/Entity/pensioner';
 import { PensionerDetail } from 'src/app/services/pensioner.detail.service';
 import { PentionersListComponent } from 'src/app/components/pentioners-list/pentioners-list.component';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-pensioner-edit-view',
@@ -20,11 +21,7 @@ export class PensionerEditViewComponent implements OnInit {
   pensioner: Pensioner = new Pensioner();
 
   CreatePensioner() {
-    console.log(this.pensioner.Name);
-    console.log(this.pensioner.DateOfBirth);
-    console.log(this.pensioner.AadhaarNumber);
-    console.log(this.pensioner.PAN);
-    const auth = localStorage.getItem('userToken');
+       const auth = localStorage.getItem('userToken');
     if (auth == null || auth.trim() == '') {
       alert('unauthorized attempt');
     }
@@ -97,10 +94,24 @@ export class PensionerEditViewComponent implements OnInit {
   constructor(private pensionerDetail: PensionerDetail, modalService: NgbModal) { }
 
   ngOnInit(): void {
+      // get detail based on
+      const auth = localStorage.getItem('userToken');
+      if (auth == null || auth.trim() == '') {
+        throw new Error("Un Authorized")
+      }
 
+      this.pensionerDetail.getPensionerDetails(this.aadharNumber,auth)
+      .subscribe((response: any) => {
+         this.pensioner  = response.message as Pensioner; 
+      
+      }, (HttpErrorResponse: any) => {
+        alert(HttpErrorResponse.error.message);
+        console.log(HttpErrorResponse.error.message);
+      })
   }
 
 
 
 }
 
+ 

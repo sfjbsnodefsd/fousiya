@@ -44,6 +44,7 @@
 
                   </div>
 
+
                   <div class="form-outline mb-4">
                     <input name="Allowances" id="allowances" type="text" [(ngModel)]="pensioner.Allowances"
                       placeholder="Enter Allowances" id="allowances" class="form-control form-control-lg" />
@@ -68,13 +69,13 @@
                       placeholder="Enter AccountNumber" id="accountNo" class="form-control form-control-lg" />
 
                   </div>
+
                   <div class="form-outline mb-4">
                     <input name="PublicOrPrivateBank" type="text" type="PublicOrPrivateBank"
                       [(ngModel)]="pensioner.BankDetails.PublicOrPrivateBank" id="privateOrPublic"
                       placeholder="Enter public or private bank" class="form-control form-control-lg" />
 
                   </div>
-
 
 
 
@@ -99,117 +100,116 @@
 </div>
 <!-- pensioner Update starts-->
 <div *ngIf="action == pensionerEditViewAction.EDIT">
-  <form>
+  <section class="vh-100 bg-image"
+    style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body p-5">
+                <h2 class="text-uppercase text-center mb-5">Edit Pensioner</h2>
 
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.Name" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter Name" />
-      <label class="form-label" for="form3Example3">Name</label>
-    </div>
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.DateOfBirth" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter DateOfBirth" />
-      <label class="form-label" for="form3Example3">DateOfBirth</label>
-    </div>
+                <form>
+                  <div class="form-outline mb-4">
+                    <label class="form-label" >Name</label>
+                    <input name="Name" type="text" [(ngModel)]="pensioner.Name" id="name"
+                      class="form-control form-control-lg" placeholder="Enter Name" />
 
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.AadhaarNumber" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter AadhaarNumber" />
-      <label class="form-label" for="form3Example3">AadhaarNumber</label>
-    </div>
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.PAN" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter PAN" />
-      <label class="form-label" for="form3Example3">PAN</label>
-    </div>
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.SalaryEarned" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter SalaryEarned" />
-      <label class="form-label" for="form3Example3">SalaryEarned</label>
-    </div>
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner. Allowances" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter Allowances" />
-      <label class="form-label" for="form3Example3">Allowances</label>
-    </div>
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.SelfOrFamilyPension" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter SelfOrFamilyPension" />
-      <label class="form-label" for="form3Example3">SelfOrFamilyPension</label>
-    </div>
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.BankDetails.BankName" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter BankName" />
-      <label class="form-label" for="form3Example3">BankName</label>
-    </div>
+                  </div>
 
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.BankDetails.AccountNumber" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter AccountNumber" />
-      <label class="form-label" for="form3Example3">AccountNumber</label>
-    </div>
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input name="email" type="email" [(ngModel)]="pensioner.BankDetails.PublicOrPrivateBank" id="form3Example3"
-        class="form-control form-control-lg" placeholder="Enter PublicOrPrivateBank" />
-      <label class="form-label" for="form3Example3">PublicOrPrivateBank</label>
-    </div>
-    <div class="text-center text-lg-start mt-4 pt-2">
-      <button type="button" (click)="UpdatePensioner()" class="btn btn-primary btn-lg"
-        style="padding-left: 2.5rem; padding-right: 2.5rem;">Update</button>
+                  <div class="form-outline mb-4">
+                    <label class="form-label" >Date Of Birth</label>
+                    <input name="DateOfBirth" type="text"  [(ngModel)]="pensioner.DateOfBirth" id="DOB"
+                      class="form-control form-control-lg" placeholder="Enter Date of Birth" />
+                     
 
-    </div>
+                  </div>
 
-  </form>
+                  <div class="form-outline mb-4">
+                    <label class="form-label" >Adhaar Number</label>
+                    <input name="AadhaarNumber" type="text" disabled [(ngModel)]="pensioner.AadhaarNumber" id="aadharNo"
+                      placeholder="Enter Aadhaar Number" class="form-control form-control-lg" />
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" >PAN Number</label>
+                    <input name="PAN" type="text" [(ngModel)]="pensioner.PAN" id="PAN" placeholder="Enter PAN"
+                      class="form-control form-control-lg" />
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" >Salary Earned</label>
+                    <input name="SalaryEarned" id="salaryEarned" type="text" [(ngModel)]="pensioner.SalaryEarned"
+                      placeholder="Enter SalaryEarned" id="salaryEarned" class="form-control form-control-lg" />
+
+                  </div>
 
 
+                  <div class="form-outline mb-4">
+                    <label class="form-label" >Allowances</label>
+                    <input name="Allowances" id="allowances" type="text" [(ngModel)]="pensioner.Allowances"
+                      placeholder="Enter Allowances" id="allowances" class="form-control form-control-lg" />
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" >Self or Family Pension</label>
+                    <!-- <input name="SelfOrFamilyPension" type="text" [(ngModel)]="pensioner.SelfOrFamilyPension"
+                      placeholder="Enter Self or family pension" id="selfOrfamily"
+                      class="form-control form-control-lg" /> -->
+                      <select name="PensionType" 
+                      class="dropdown-toggle form-control form-control-lg ng-untouched ng-pristine ng-valid dropdownIcon"
+                      [(ngModel)]="pensioner.SelfOrFamilyPension">
+                        <option value="SELF">SELF</option>
+                        <option value="FAMILY">FAMILY</option>                      
+                      </select> 
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" >Bank Name</label>
+                    <input name="BankName" type="text" [(ngModel)]="pensioner.BankDetails.BankName"
+                      placeholder="Enter BankName" id="bankName" class="form-control form-control-lg" />
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" >Account Number</label>
+                    <input name="AccountNumber" type="text" [(ngModel)]="pensioner.BankDetails.AccountNumber"
+                      placeholder="Enter AccountNumber" id="accountNo" class="form-control form-control-lg" />
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" >Public Or Private Bank</label>                    
+                    <select name="BankType" 
+                    class="dropdown-toggle form-control form-control-lg ng-untouched ng-pristine ng-valid dropdownIcon"
+                    [(ngModel)]="pensioner.BankDetails.PublicOrPrivateBank" >
+                      <option value="PUBLIC">PUBLIC</option>
+                      <option value="PRIVATE">PRIVATE</option>                      
+                    </select>                    
+
+                  </div> 
+
+                  <div class="d-flex justify-content-center">
+                    <button type="button" (click)="UpdatePensioner()"
+                      class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Update</button>
+                  </div>
 
 
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 <!-- pensioner Update ends-->
-
-
-<!-- pensioner View starts-->
-<div *ngIf="action == pensionerEditViewAction.VIEW">
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Date Of Birth</th>
-        <th scope="col">Aadhaar Number</th>
-        <th scope="col">PAN </th>
-        <th scope="col">SalaryEarned </th>
-        <th scope="col">Allowances </th>
-        <th scope="col">SelfOrFamilyPension </th>
-        <th scope="col">BankName </th>
-        <th scope="col">AccountNumber </th>
-        <th scope="col">PublicOrPrivateBank </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td [innerHTML]="pensioner.Name"></td>
-        <td [innerHTML]="pensioner.DateOfBirth"></td>
-        <td [innerHTML]="pensioner.AadhaarNumber"></td>
-        <td [innerHTML]="pensioner.PAN"></td>
-        <td [innerHTML]="pensioner.SalaryEarned"></td>
-        <td [innerHTML]="pensioner.Allowances"></td>
-        <td [innerHTML]="pensioner.SelfOrFamilyPension"></td>
-        <td [innerHTML]="pensioner.BankDetails.BankName"></td>
-        <td [innerHTML]="pensioner.BankDetails.AccountNumber"></td>
-        <td [innerHTML]="pensioner.BankDetails.PublicOrPrivateBank"></td>
-
-      </tr>
-    </tbody>
-  </table>
-</div>
-<!-- pensioner View ends-->
+ 

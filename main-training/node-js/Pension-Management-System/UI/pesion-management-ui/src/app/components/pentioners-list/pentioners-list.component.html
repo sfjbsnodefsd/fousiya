@@ -17,6 +17,7 @@
 
 <div *ngIf="action == pensionerEditViewAction.LIST || action == pensionerEditViewAction.DELETE">
   <table class="table table-hover">
+    <caption>Pensioners List</caption>
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
@@ -33,12 +34,12 @@
         <td [innerHTML]="pensioner.AadhaarNumber"></td>
         <td [innerHTML]="pensioner.DateOfBirth"></td>
         <td>
-          <i class="bi bi-eye-fill pointer"
-            (click)="changeAction(pensionerEditViewAction.VIEW,pensioner.AadhaarNumber)"></i>&nbsp;
-          <i class="bi bi-pencil-square pointer"
-            (click)="changeAction(pensionerEditViewAction.EDIT,pensioner.AadhaarNumber)"></i>&nbsp;
-          <i class="bi bi-trash"
-            (click)="changeAction(pensionerEditViewAction.DELETE,pensioner.AadhaarNumber,content)"></i>&nbsp;
+          <em class="bi bi-eye-fill pointer"
+            (click)="changeAction(pensionerEditViewAction.VIEW,pensioner.AadhaarNumber)"></em>&nbsp;
+          <em class="bi bi-pencil-square pointer"
+            (click)="changeAction(pensionerEditViewAction.EDIT,pensioner.AadhaarNumber)"></em>&nbsp;
+          <em class="bi bi-trash"
+            (click)="changeAction(pensionerEditViewAction.DELETE,pensioner.AadhaarNumber,content)"></em>&nbsp;
           </td>
       </tr>
     </tbody>
@@ -50,13 +51,12 @@
 <ng-template *ngIf="action == pensionerEditViewAction.DELETE" >
   <div class="modal-header">
     <h4 class="modal-title"> Confirm Delete </h4>
-    <button type="button" class="close" aria-label="Close">
-      <!-- //<button type="button" class="close" aria-label="Close (Click)=" modal.dismiss('Cross click')"> -->
+    <button type="button" class="close" aria-label="Close">      
       <span ariaa - hidden="true">& TimeRanges; </span>
     </button>
   </div>
   <div class="modal-body">
-    <h2>Are you sure you want to delete this record.</h2>
+    <h2>Are you sure you want to delete this record {{currentAadharNumber}}.</h2>
     <div class="border text-center">
       <button data-dismiss="modal" class="btn btn-danger">yes,
         Delete!</button>
@@ -73,8 +73,8 @@
 </div>
 
 <div *ngIf="action == pensionerEditViewAction.EDIT">
-  <app-pensioner-edit-view [action] ="action"></app-pensioner-edit-view>
-</div>
+  <app-pensioner-edit-view [aadharNumber] = "currentAadharNumber" [action] ="action"></app-pensioner-edit-view>
+  </div>
 
 <div *ngIf="action == pensionerEditViewAction.VIEW">
   <app-pensioner-detail [aadhaarNumber] ="currentAadharNumber"></app-pensioner-detail>

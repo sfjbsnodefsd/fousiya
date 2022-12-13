@@ -1,7 +1,7 @@
 export class Pensioner {
     _id: string='';
     Name: string='';
-    DateOfBirth: string='';
+    DateOfBirth: any = '';
     AadhaarNumber: string='';
     PAN: string='';
     SalaryEarned: number=0;
