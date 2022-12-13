@@ -1,77 +1,93 @@
-// const mongoose = require("mongoose");
-// const { describe, expect, test } = require("@jest/globals");
+const mongoose = require("mongoose");
+let { describe, expect, test } = require("@jest/globals");
+ 
+
+describe('Testing User Service ', () => {
+ // mock + code under test definition
+    beforeEach(() => {
+        console.log("entered");
+        jest.resetAllMocks();
+    });
+    // tests
+
+    const User = require("../models/user");
+    test('Testing new User registration with new user details', () => {
+        //given 
+
+        const mongooseConnectMock = jest.spyOn(mongoose, "connect");
+        mongooseConnectMock.mockImplementation(() => "");
+
+        const userService = require("../service/user.service");
+
+        const testUser = new User(
+            {
+                email: "admin@example.com",
+                password: "admin123",
+                name: "Admin"
+            }
+        )
+
+        const userFindMock = jest.spyOn(User, "findOne");
+        userFindMock.mockReturnValue(undefined);
+
+        const userObjectMock = jest.spyOn(userService, "createUserobject")
+        userObjectMock.mockReturnValue(testUser);
 
 
-// describe('Testing User Service ', () => {
-//     const User = require("../models/user");
-//     test('Testing new User registration with new user details', () => {
-//         given const { jest } = require('@jest/globals')
+        const userSaveMock = jest.spyOn(testUser, "save")
+        userSaveMock.mockReturnValue(true);
+
+        userService.create(testUser, (err, user) => {
+            expect(err).toBe(null);
+            expect(user).toBe(testUser);
+
+        });
 
 
-//         const mongooseConnectMock = jest.spyOn(mongoose, "connect");
-//         mongooseConnectMock.mockImplementation(() => "");
+    });
 
 
-//         const userService = require("../service/user.service");
+    test('Testing new User registeration with existing  user details', () => {
+        //given       
+        const mongooseConnectMock = jest.spyOn(mongoose, "connect");
+        mongooseConnectMock.mockImplementation(() => "");
 
-//         const tetUser = new User(
-//             {
-//                 email: "admin@example.com",
-//                 password: "admin123",
-//                 name: "Admin"
-//             }
-//         )
+        const UserService = require('../service/user.service')
 
-//         const userFindMock = jest.spyOn(User, "findOne");
-//         userFindMock.mockReturnValue(undefined);
+        const testUser = new User({
+            email: "admin@example.com", password: "admin123", name: "Admin"
+        });
 
-//         const userObjectMock = jest.spyOn(userService, "createUserobject")
-//         userObjectMock.mockReturnValue(tetUser);
+        const userFindMock = jest.spyOn(User, "findOne");
+        userFindMock.mockReturnValue({ name: 'Fousiya' });
 
+        //when and Then
+        UserService.create(testUser, (err, user) => {
+            expect(err).toBe("User already exists");
+            expect(user).toBe(undefined);
+        })
+    });
 
-//         const userSaveMock = jest.spyOn(tetUser, "save")
-//         userSaveMock.mockReturnValue(true);
+    test('Test getUserByUserEmail Function With User Does Not Exist In Database', () => {
+        //given              
+        const mongooseConnectMock = jest.spyOn(mongoose, "connect");
+        mongooseConnectMock.mockImplementation(() => "");
+        const userService = require('../service/user.service')
 
-//         userService.create(tetUser, (err, user) => {
-//             expect(err).toBe(null);
-//             expect(user).toBe(tetUser);
+        const testUser = new User({
+            email: "admin@example.com", password: "admin123", name: "Admin"
+        });
 
-//         });
+        const userFindMock = jest.spyOn(User, "findOne");
+        userFindMock.mockReturnValue(undefined);
 
-//         test('Testing new User registeration with existing  user details', () => {
-//             given const { jest } = require('@jest/globals')
-
-//             const mongooseConnectMock = jest.spyOn(mongoose, "connect");
-//             mongooseConnectMock.mockImplementation(() => "");
-
-//             const UserService = require('../service/user.service')
-
-//             const testUser = new User({
-//                 email: "admin@example.com", password: "admin123", name: "Admin"
-//             });
-
-//             const userFindMock = jest.spyOn(User, "findOne");
-//             userFindMock.mockReturnValue({ name: 'Fousiya' });
-
-//             when and Then
-//             UserService.create(testUser, (err, user) => {
-//                 expect(err).toBe("User already exists");
-//                 expect(user).toBe(undefined);
-//             })
-//         })
+        userService.getUserByUserEmail(testUser,(err,user)=>{
+            expect(err).toBe("User Does Not Exists");
+            expect(user).toBe(undefined);
+        })
+    });
 
 
+  
 
-
-
-
-
-
-
-
-
-
-
-//     })
-
-// })
+})

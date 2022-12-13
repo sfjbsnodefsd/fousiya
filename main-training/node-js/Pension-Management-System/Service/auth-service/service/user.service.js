@@ -31,9 +31,8 @@ module.exports = {
 
       if (existingUser) {
         return callbackFn("User already exists");
-      } else {
-        const newUser = new User({name, email, password}) ;
-//const newUser = module.exports.createUserobject(name, email, password);
+      } else {        
+        const newUser = module.exports.createUserobject(name, email, password);
         console.log("name" + newUser.name);
 
         newUser.save();
@@ -55,15 +54,13 @@ module.exports = {
 
     return callbackFn(null, existingUser);
   }),
-  // createUserobject: (name, email, password) => {
-  //   return new User({ name, email, password })
-
-  // }
-
+  createUserobject: (name, email, password) => {
+    return new User({ name, email, password })
+  }  
 };
 
 
-// login user added
+
 
 
 

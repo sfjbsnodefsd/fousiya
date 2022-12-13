@@ -4,10 +4,9 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const PensionerDetail = require("./pensioner");
 const checktoken = require('./isAuthenticated');
-var csv = require('csvtojson');
+const csv = require('csvtojson');
 const { success, fail } = require('./http.response')
 const cors = require('cors');
-const { request } = require("express");
 app.use(cors());
 app.use(express.json());
 const GENERIC_EXCEPTION = "An Exception Has Occured."
@@ -19,27 +18,25 @@ if (err) throw err;
 console.log(`pensioner service DB  Connected`);
 csv()
   .fromFile(`${__dirname}/data/pensioner-details.csv`)
-  .then(async (response) => {
-    //console.log(response);
-    for (var x = 0; x < response.length; x++) {
-
+  .then(async (response) => {  
+    for (const element of response) {
       //check whether pensioner details already added
-      const pensioner = await PensionerDetail.findOne({ AadhaarNumber: response[x].AadhaarNumber });
+      const pensioner = await PensionerDetail.findOne({ AadhaarNumber: element.AadhaarNumber });
       if (pensioner) //if exists , continue processing next from for loop
         continue;
 
       const pensionerDetail = new PensionerDetail({
-        Name: response[x].Name,
-        DateOfBirth: response[x].DateOfBirth,
-        AadhaarNumber: response[x].AadhaarNumber,
-        PAN: response[x].PAN,
-        SalaryEarned: response[x].SalaryEarned,
-        Allowances: response[x].Allowances,
-        SelfOrFamilyPension: response[x].SelfOrFamilyPension,
+        Name: element.Name,
+        DateOfBirth: element.DateOfBirth,
+        AadhaarNumber: element.AadhaarNumber,
+        PAN: element.PAN,
+        SalaryEarned: element.SalaryEarned,
+        Allowances: element.Allowances,
+        SelfOrFamilyPension: element.SelfOrFamilyPension,
         BankDetails: {
-          BankName: response[x].BankName,
-          AccountNumber: response[x].AccountNumber,
-          PublicOrPrivateBank: response[x].PublicOrPrivateBank
+          BankName: element.BankName,
+          AccountNumber: element.AccountNumber,
+          PublicOrPrivateBank: element.PublicOrPrivateBank
         },
       });
 
@@ -193,6 +190,6 @@ app.delete("/deletePensioner/:aadhaar", checktoken, cors(), async (req, res) => 
 
 });
 
-app.listen(5001, () => {
-  console.log(`pensioner detail service is working at port 5001 ${process.env.PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`pensioner detail service is working at port  ${process.env.PORT}`);
 });

@@ -34,7 +34,7 @@ module.exports = {
           dbUser.password = undefined;
           console.log(dbUser.password);
           const jsontoken = sign({ result: dbUser }, "secret", {
-            expiresIn: "30m",
+            expiresIn: "10h",
           });
           return success(res, "Login sucessfully ", jsontoken);
         } else {

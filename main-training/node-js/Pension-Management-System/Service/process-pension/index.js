@@ -35,6 +35,7 @@ app.post("/ProcessPension",checktoken,cors(), async (req, res) => {
 
 
     } catch (err) {
+        //log error
         throw err;
     }
 
@@ -65,7 +66,7 @@ const getPensionDetails = (aadhaar,auth) => {
 }
 
 const getPercentage = (SelfOrFamilyPension) => {
-    var percentage = null;
+    let percentage = null;
     if (SelfOrFamilyPension !== null) {
         switch (SelfOrFamilyPension.toString().toUpperCase()) {
             case "SELF":
