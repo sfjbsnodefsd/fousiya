@@ -4,6 +4,8 @@ const app = express();
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 app.use(express.json());
+const {LoggerService} = require('../logger-service');
+const logger = new LoggerService();
 
 
 mongoose.connect(
@@ -13,7 +15,7 @@ mongoose.connect(
     useUnifiedTopology: true,
   },
   () => {
-    console.log(`auth service DB  Connected`);
+    logger.info(`auth service DB  Connected`);
   }
 );
 
@@ -25,15 +27,13 @@ module.exports = {
     let existingUser;
 
     try {
-      existingUser = await User.findOne({ email });
-      console.log(existingUser);
-
+      existingUser = await User.findOne({ email }); 
 
       if (existingUser) {
         return callbackFn("User already exists");
       } else {        
         const newUser = module.exports.createUserobject(name, email, password);
-        console.log("name" + newUser.name);
+        logger.info("name" + newUser.name);
 
         newUser.save();
         return callbackFn(null, newUser);
@@ -49,7 +49,9 @@ module.exports = {
 
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
+      logger.warn("User Does Not Exists");
       return callbackFn("User Does Not Exists");
+
     }
 
     return callbackFn(null, existingUser);

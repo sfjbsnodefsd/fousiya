@@ -7,12 +7,15 @@ const checktoken = require('./isAuthenticated');
 const {success,fail} = require('./http.response')
 const cors = require('cors');
 app.use(cors());
+const {LoggerService} = require('./logger-service');
+const logger = new LoggerService();
+
 app.post("/ProcessPension",checktoken,cors(), async (req, res) => {
     const { aadhaar } = req.body;
-    console.log(`aadhaar number ${aadhaar}`)
+    logger.info(`aadhaar number ${aadhaar}`)
     const auth = req.header('authorization');
     try {
-        const pensioner = await getPensionDetails(aadhaar,auth);
+        const pensioner = await getPensionDetails(aadhaar,auth);       
         if(!pensioner){
             return fail(res,"API Error");
         }
@@ -20,7 +23,8 @@ app.post("/ProcessPension",checktoken,cors(), async (req, res) => {
         if(!pensioner.success){
             return fail(res,pensioner.message);
         }
-        console.log(pensioner);
+        logger.info(pensioner);
+        
         const { SalaryEarned, Allowances, SelfOrFamilyPension, BankDetails } = pensioner.message;
         const percentage = getPercentage(SelfOrFamilyPension);
 
@@ -52,14 +56,14 @@ const getPensionDetails = (aadhaar,auth) => {
                 "Authorization" : auth
             } }, (err, result, body) => {
                 if (err) {
-                    console.log(err);
+                    logger.error(JSON.stringify(err));
                     reject(err);
                 }
                 else
                     resolve(body);
             });
         } catch (err) {
-            console.log(err);
+            logger.error(JSON.stringify(err));
             reject(err);
         }
     });
@@ -102,5 +106,5 @@ const getServiceCharge = (BankDetails) => {
 
 
 app.listen(5002, () => {
-    console.log(`process-pension service is working at port 5002 ${process.env.PORT}`);
+    logger.info(`process-pension service is working at port ${process.env.PORT}`);
 });

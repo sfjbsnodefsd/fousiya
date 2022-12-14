@@ -3,6 +3,10 @@ const { create, getUserByUserEmail } = require("../service/user.service");
 const { genSaltSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken")
 const { success, fail } = require('../http.response')
+const {LoggerService} = require('../logger-service');
+const logger = new LoggerService();
+
+
 
 module.exports = {
   createUser: async (req, res) => {
@@ -21,7 +25,7 @@ module.exports = {
   },
 
   login: (req, res) => {
-    console.log('login method called');
+    logger.info('login method called');
     const user = req.body;
 
     getUserByUserEmail(user, (err, dbUser) => {
@@ -32,9 +36,9 @@ module.exports = {
         const result = compareSync(user.password, dbUser.password);
         if (result) {
           dbUser.password = undefined;
-          console.log(dbUser.password);
+          logger.info(dbUser.password);
           const jsontoken = sign({ result: dbUser }, "secret", {
-            expiresIn: "10h",
+            expiresIn: "30m",
           });
           return success(res, "Login sucessfully ", jsontoken);
         } else {

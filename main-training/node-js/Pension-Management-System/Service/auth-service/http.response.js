@@ -13,8 +13,7 @@ module.exports = {
             token: jsonToken
           });
     },
-    fail: (res, message) => {
-        console.log(message);        
+    fail: (res, message) => {            
         return res.status(500).json({
             success: 0,
             message: message,

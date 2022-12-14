@@ -6,8 +6,7 @@ module.exports = {
             message: result,
         });
     },
-    fail: (res, message,status = 500) => {
-        console.log(message);        
+    fail: (res, message,status = 500) => {          
         return res.status(status).json({
             success: 0,
             message: message,

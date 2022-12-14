@@ -9,13 +9,15 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 const GENERIC_EXCEPTION = "An Exception Has Occured."
+const {LoggerService} = require('./logger-service');
+const logger = new LoggerService();
 
 
 mongoose.connect("mongodb://127.0.0.1:27017/pensioner-service", { useNewUrlParser: true, useUnifiedTopology: true, }, function (err, db) {
 
   if (err) throw err;
 
-  console.log(`pensioner service DB  Connected`);
+  logger.info(`pensioner service DB  Connected`);
   csv()
     .fromFile(`${__dirname}/data/pensioner-details.csv`)
     .then(async (response) => {
@@ -51,7 +53,7 @@ module.exports = {
   
   getPensionerDetailByAadhaar : async (req, res) => {
     try {
-      console.log(req);
+      logger.info(req);
       const pensioner = await PensionerDetail.findOne({ AadhaarNumber: req.params.aadhaar });
       if (pensioner) {
         return success(res, pensioner);
@@ -61,23 +63,23 @@ module.exports = {
       }
     }
     catch (dbCallError) {
-      console.log(dbCallError);
+      logger.error(JSON.stringify(dbCallError));
       return res.status(400).send(GENERIC_EXCEPTION);
     }
   },
   getAllPensionerDetails :  async (req, res) => {
     try {
-      console.log(req);
+      logger.info(req);
       PensionerDetail.find({}, (error, pensioners) => {
         if (error) {
-          console.log(error);
+          logger.error(JSON.stringify(error));
           return fail(res, "There was an error while fetching pensioners details");
         }
         return success(res, pensioners);
       });
     }
     catch (dbCallError) {
-      console.log(dbCallError);
+      logger.error(JSON.stringify(dbCallError));
       return res.status(400).send(GENERIC_EXCEPTION);
     }
   },
@@ -107,11 +109,11 @@ module.exports = {
       })
   
      const createdPensionerDetail = await newPensionerDetail.save();
-     console.log(createdPensionerDetail);
+     logger.info(createdPensionerDetail);
      return success(res,`The Aadhaar ${AadhaarNumber} Details successfully created`);
   
     } catch (err) {
-      console.log(err);
+      logger.error(err);
       return fail(res,GENERIC_EXCEPTION,400)
     }
   
@@ -152,12 +154,12 @@ module.exports = {
           return fail(res, `The ${AadhaarNumber} Details Not Updated`);
         }
       } catch (err) {
-        console.log(dbCallError);
+        logger.error(JSON.stringify(dbCallError));
         return res.status(400).send(GENERIC_EXCEPTION);
       }
   
     } catch (err) {
-      console.log(err);
+      logger.error(JSON.stringify(err));
       return res.status(400).send(GENERIC_EXCEPTION);
     }
   
@@ -173,7 +175,7 @@ module.exports = {
         if (deleted.deletedCount == 1)
           return success(res, `The Aadhaar ${AadhaarNumber} Deleted Successfully`);
         else {
-          console.log(deleted);
+          logger.error(JSON.stringify(deleted));
           return fail(res, `The Aadhaar ${AadhaarNumber} Not Deleted Successfully`);
         }
       }
@@ -181,7 +183,7 @@ module.exports = {
         return fail(res, `The Aadhaar ${AadhaarNumber} Does Not Exists`)
       }
     } catch (err) {
-      console.log(err);
+      logger.error(JSON.stringify(err));
       return res.status(400).send(GENERIC_EXCEPTION);
     }
   
