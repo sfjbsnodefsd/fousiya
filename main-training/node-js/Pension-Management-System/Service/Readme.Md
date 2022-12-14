@@ -1,13 +1,10 @@
+Three microservices used in backend NodeJS application.
+
 ## 1.auth-service      
 ## 2.pensioner-detail
 ## 3.process-pension
-## 4.pension-management-portal named as pensionmanagement-ui created for front-end application
 
-Backend-NodeJS application contain 3 microservices
-1.auth-service
-2.pensioner-detail
-3.process-pension
-
+  
 ### auth-service
 ------------------
 This microservice is used to Generate JWT token and creaing user credential/user register and user login and also doing password encryption and decryption.For creating user credential admin have to provide the authentication token.Authentication token will be get by the login.
